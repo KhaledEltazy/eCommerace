@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 pluginManagement {
     repositories {
         google {
@@ -18,7 +20,6 @@ dependencyResolutionManagement {
         mavenCentral()
         //noinspection JcenterRepositoryObsolete
         jcenter() // Warning: this repository is going to shut down soon
-        maven { url = uri("https://jitpack.io") }
     }
 }
 

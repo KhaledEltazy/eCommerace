@@ -12,7 +12,7 @@ plugins {
 
 android {
     namespace = "com.android.ecommerace"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.android.ecommerace"
@@ -87,7 +87,7 @@ dependencies {
 
 
     //loading button
-    implementation ("br.com.simplepass:loading-button-android:2.2.0")
+    implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
 
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.13.0")
@@ -95,18 +95,18 @@ dependencies {
     //circular image
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
-    //viewpager2 indicatior
-    implementation ("io.github.vejei.viewpagerindicator:viewpagerindicator:1.0.0-alpha.1")
+    //viewpager2 indicator
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
 
     //stepView
-    implementation ("com.shuhart.stepview:stepview:1.5.1")
+    implementation ("com.github.shuhart:stepview:1.5.1")
 
     //Android Ktx
     implementation ("androidx.navigation:navigation-fragment-ktx:2.4.2")
 
     //Dagger hilt
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation ("com.google.dagger:hilt-android:2.38.1")
+    kapt ("com.google.dagger:hilt-compiler:2.38.1")
 }
 
     kapt {
