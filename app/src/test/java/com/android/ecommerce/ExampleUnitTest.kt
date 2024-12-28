@@ -1,4 +1,4 @@
-package com.android.ecommerace
+package com.android.ecommerce
 
 import org.junit.Test
 

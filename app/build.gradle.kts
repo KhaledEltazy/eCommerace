@@ -11,11 +11,11 @@ plugins {
 }
 
 android {
-    namespace = "com.android.ecommerace"
+    namespace = "com.android.ecommerce"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.android.ecommerace"
+        applicationId = "com.android.ecommerce"
         minSdk = 22
         //noinspection OldTargetApi
         targetSdk = 34
