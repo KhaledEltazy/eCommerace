@@ -11,6 +11,8 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
+lifecycleRuntimeAndroid = "2.8.7"
+lifecycleCommonJvm = "2.8.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -22,6 +24,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+androidx-lifecycle-runtime-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-android", version.ref = "lifecycleRuntimeAndroid" }
+androidx-lifecycle-common-jvm = { group = "androidx.lifecycle", name = "lifecycle-common-jvm", version.ref = "lifecycleCommonJvm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

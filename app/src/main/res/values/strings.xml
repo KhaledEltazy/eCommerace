@@ -10,7 +10,7 @@
     <string name="let_s_register">Let\'s Register</string>
     <string name="do_you_have_an_account_log_in">Do you have an account? Log in</string>
     <string name="first_name">First Name</string>
-    <string name="second_name">Second Name</string>
+    <string name="last_name">Last Name</string>
     <string name="email">Email</string>
     <string name="facebook">Facebook</string>
     <string name="google">Google</string>

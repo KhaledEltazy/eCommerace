@@ -80,35 +80,51 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.auth)
+    implementation(libs.androidx.lifecycle.runtime.android)
+    implementation(libs.androidx.lifecycle.common.jvm)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    //firebase dependencies
-    implementation ("com.google.firebase:firebase-auth:23.1.0")
 
+    // Firebase dependencies using BOM for compatibility
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-auth")
 
-    //loading button
+    // Loading button
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
 
-    //Glide
-    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    // Glide for image loading
+    implementation("com.github.bumptech.glide:glide:4.15.0")
 
-    //circular image
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    // Circular Image View
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
-    //viewpager2 indicator
+    // ViewPager2 indicator
     implementation("androidx.viewpager2:viewpager2:1.1.0")
 
-    //stepView
-    implementation ("com.github.shuhart:stepview:1.5.1")
+    // StepView
+    implementation("com.github.shuhart:stepview:1.5.1")
 
-    //Android Ktx
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    // Android Navigation KTX
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
 
-    //Dagger hilt
-    implementation ("com.google.dagger:hilt-android:2.38.1")
-    kapt ("com.google.dagger:hilt-compiler:2.38.1")
+    // Coroutines and Lifecycle
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.6.1")
+
+    // Dagger-Hilt for Dependency Injection
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    // Unit testing
+    testImplementation("junit:junit:4.13.2")
+
+    // Android testing
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
 }
 
     kapt {

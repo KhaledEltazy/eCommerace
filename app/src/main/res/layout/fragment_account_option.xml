@@ -14,7 +14,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.login_register.LoginRegisterFragment">
+    tools:context=".fragments.login_register.AccountOptionFragment">
 
 
     <ImageView
