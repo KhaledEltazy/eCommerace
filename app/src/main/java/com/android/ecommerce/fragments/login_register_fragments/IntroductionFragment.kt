@@ -1,4 +1,4 @@
-package com.android.ecommerce.fragments.login_register
+package com.android.ecommerce.fragments.login_register_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

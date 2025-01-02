@@ -1,4 +1,4 @@
-package com.android.ecommerce.fragments.login_register
+package com.android.ecommerce.fragments.login_register_fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.android.ecommerce.data.User
 import com.android.ecommerce.databinding.FragmentRegisterBinding
+import com.android.ecommerce.util.RegisterValidation
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.viewmodel.RegisterViewmodel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 private val TAG = "RegisterFragment"
@@ -38,9 +41,7 @@ class RegisterFragment : Fragment() {
         binding.apply {
             btnRegister.setOnClickListener {
                 if (etFirstName.text.toString() != "" &&
-                    etLastName.text.toString() != "" &&
-                    etEmail.text.toString() != "" &&
-                    etPassword.text.toString() != ""
+                    etLastName.text.toString() != ""
                 ) {
                     val user = User(
                         etFirstName.text.toString().trim(),
@@ -51,12 +52,13 @@ class RegisterFragment : Fragment() {
                     val password = etPassword.text.toString()
                     viewmodel.createAccountWithEmailAndPassword(user, password)
                 } else {
-                    Toast.makeText(requireContext(),"Please fill missing field",Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(),"Please fill missing fields",Toast.LENGTH_LONG).show()
                 }
             }
         }
 
         //state of register button
+        //collect register value
         lifecycleScope.launch {
                 viewmodel.register.collect {
                     when (it) {
@@ -75,6 +77,28 @@ class RegisterFragment : Fragment() {
                         else -> Unit
                     }
                 }
+        }
+
+        //collect validation email and password
+        lifecycleScope.launch {
+            viewmodel.validation.collect{ valition ->
+                if (valition.email is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.etEmail.apply {
+                            requestFocus()
+                            error = valition.email.message
+                        }
+                    }
+                }
+                if ( valition.password is RegisterValidation.Failed){
+                        withContext(Dispatchers.Main){
+                            binding.etPassword.apply {
+                                requestFocus()
+                                error = valition.password.message
+                            }
+                        }
+                }
+            }
         }
 
     }
