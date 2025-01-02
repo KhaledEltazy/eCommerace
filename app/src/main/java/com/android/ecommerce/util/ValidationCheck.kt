@@ -6,7 +6,7 @@ import android.util.Patterns
 fun validateEmail (email : String) : RegisterValidation{
     if(email.isEmpty()){
         return RegisterValidation.Failed("Email cannot be empty")
-    } else if (!Patterns.EMAIL_ADDRESS.equals(email)){
+    } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
         return RegisterValidation.Failed("Wrong email format")
     }
     return RegisterValidation.Success
