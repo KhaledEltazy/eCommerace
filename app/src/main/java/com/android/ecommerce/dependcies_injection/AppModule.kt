@@ -1,6 +1,8 @@
 package com.android.ecommerce.dependcies_injection
 
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +17,11 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseAuth() = FirebaseAuth.getInstance()
+
+    //providing firebaseFireStore database
+    @Provides
+    @Singleton
+    fun provideFirebaseFireStoreDatabase() = Firebase.firestore
 
 
 }

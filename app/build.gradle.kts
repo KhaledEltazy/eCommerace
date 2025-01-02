@@ -90,6 +90,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth")
 
+    //Firebase FireSore
+    implementation ("com.google.firebase:firebase-firestore:25.1.1")
+
     // Loading button
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
 
