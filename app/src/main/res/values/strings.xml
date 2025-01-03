@@ -8,7 +8,7 @@
     <string name="register">REGISTER</string>
     <string name="log_in">LOG IN</string>
     <string name="let_s_register">Let\'s Register</string>
-    <string name="do_you_have_an_account_log_in">Do you have an account? Log in</string>
+    <string name="do_you_have_an_account">Do you have an account?</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="email">Email</string>
@@ -17,5 +17,7 @@
     <string name="forgot_password">Forgot Password ?</string>
     <string name="password">Password</string>
     <string name="let_s_login">Let\'s Login</string>
-    <string name="don_t_have_an_account_register">Don\'t have an account ? Register</string>
+    <string name="don_t_have_an_account">Don\'t have an account ?</string>
+    <string name="login_text">LogIn</string>
+    <string name="register_text">Register</string>
 </resources>

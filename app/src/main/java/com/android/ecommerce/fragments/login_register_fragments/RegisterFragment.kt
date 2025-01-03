@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.android.ecommerce.R
 import com.android.ecommerce.data.User
 import com.android.ecommerce.databinding.FragmentRegisterBinding
 import com.android.ecommerce.util.RegisterValidation
@@ -37,8 +39,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //handling register button and create an account
+
         binding.apply {
+            //handling register button and create an account
             btnRegister.setOnClickListener {
                 if (etFirstName.text.toString() != "" &&
                     etLastName.text.toString() != ""
@@ -54,6 +57,11 @@ class RegisterFragment : Fragment() {
                 } else {
                     Toast.makeText(requireContext(),"Please fill missing fields",Toast.LENGTH_LONG).show()
                 }
+            }
+
+            //handling login text
+            tvLogin.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment_to_logInFragment)
             }
         }
 
