@@ -19,6 +19,10 @@ class LoginViewmodel @Inject constructor(
     private val _login = MutableSharedFlow<Resource<FirebaseUser>>()
     val login = _login.asSharedFlow()
 
+    private val _resetPassword = MutableSharedFlow<Resource<String>>()
+    val resetPassword = _resetPassword.asSharedFlow()
+
+    //login account function
     fun loggingAccount(email : String , password : String){
         viewModelScope.launch {
             _login.emit(Resource.Loading())
@@ -37,4 +41,24 @@ class LoginViewmodel @Inject constructor(
             }
         }
     }
+
+    //handling ForgotPassword link
+    fun resetPassword(email:String){
+        viewModelScope.launch {
+            _resetPassword.emit(Resource.Loading())
+        }
+
+            firebaseAuth.sendPasswordResetEmail(email)
+                .addOnSuccessListener {
+                    viewModelScope.launch {
+                        _resetPassword.emit(Resource.Success(email))
+                    }
+                }.addOnFailureListener {
+                    viewModelScope.launch {
+                        _resetPassword.emit(Resource.Error(it.message.toString()))
+                    }
+        }
+    }
+
+
 }

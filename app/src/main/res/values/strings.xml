@@ -20,4 +20,9 @@
     <string name="don_t_have_an_account">Don\'t have an account ?</string>
     <string name="login_text">LogIn</string>
     <string name="register_text">Register</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="we_will_send_you_the_password_reset_link_to_your_email">we will send you the password reset link to your email</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="cancel">Cancel</string>
+    <string name="send">Send</string>
 </resources>
