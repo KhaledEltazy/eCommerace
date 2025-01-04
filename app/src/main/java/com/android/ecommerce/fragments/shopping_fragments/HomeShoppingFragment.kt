@@ -5,56 +5,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.android.ecommerce.R
+import com.android.ecommerce.adapters.HomeViewPagerAdapter
+import com.android.ecommerce.databinding.FragmentHomeShoppingBinding
+import com.android.ecommerce.fragments.categories.AccessoryFragment
+import com.android.ecommerce.fragments.categories.ChairFragment
+import com.android.ecommerce.fragments.categories.CupboardFragment
+import com.android.ecommerce.fragments.categories.FurnitureFragment
+import com.android.ecommerce.fragments.categories.MainFragment
+import com.android.ecommerce.fragments.categories.TableFragment
+import com.google.android.material.tabs.TabLayoutMediator
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeShoppingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeShoppingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+   private lateinit var binding : FragmentHomeShoppingBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_shopping, container, false)
+        binding = FragmentHomeShoppingBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeShoppingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeShoppingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val categoriesFragments = arrayListOf<Fragment>(
+            MainFragment(),
+            ChairFragment(),
+            CupboardFragment(),
+            TableFragment(),
+            AccessoryFragment(),
+            FurnitureFragment()
+        )
+
+        val viewPager2Adapter = HomeViewPagerAdapter(categoriesFragments,childFragmentManager,lifecycle)
+        binding.viewPager.adapter = viewPager2Adapter
+        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab, position ->
+            when(position){
+                0 -> tab.text = "Home"
+                1 -> tab.text = "Chair"
+                2 -> tab.text = "Cupboard"
+                3 -> tab.text = "Table"
+                4 -> tab.text = "Accessory"
+                5 -> tab.text = "Furniture"
             }
+
+        }.attach()
     }
 }
