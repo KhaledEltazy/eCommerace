@@ -11,7 +11,7 @@ import com.android.ecommerce.fragments.categories.AccessoryFragment
 import com.android.ecommerce.fragments.categories.ChairFragment
 import com.android.ecommerce.fragments.categories.CupboardFragment
 import com.android.ecommerce.fragments.categories.FurnitureFragment
-import com.android.ecommerce.fragments.categories.MainFragment
+import com.android.ecommerce.fragments.categories.MainCategoryFragment
 import com.android.ecommerce.fragments.categories.TableFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -30,7 +30,7 @@ class HomeShoppingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val categoriesFragments = arrayListOf<Fragment>(
-            MainFragment(),
+            MainCategoryFragment(),
             ChairFragment(),
             CupboardFragment(),
             TableFragment(),
