@@ -1,5 +1,10 @@
 package com.android.ecommerce.dependcies_injection
 
+import android.app.Application
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import com.android.ecommerce.util.Constants.INTRODUCTION_SHARED
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -23,5 +28,8 @@ object AppModule {
     @Singleton
     fun provideFirebaseFireStoreDatabase() = Firebase.firestore
 
-
+    @Provides
+    fun introductionFragmentSharedPref(
+        application : Application
+    ) = application.getSharedPreferences(INTRODUCTION_SHARED,MODE_PRIVATE)
 }
