@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="@id/img_product">
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/productNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
@@ -55,7 +55,7 @@
 
 
         <TextView
-            android:id="@+id/tvBDNewPrice"
+            android:id="@+id/newPriceTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -65,12 +65,12 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_price"
+            app:layout_constraintStart_toEndOf="@id/productPriceTV"
             app:layout_constraintTop_toBottomOf="@id/linear_product_name"
             android:layout_marginStart="10dp"/>
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/productPriceTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"

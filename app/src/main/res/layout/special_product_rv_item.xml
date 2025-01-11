@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/ivBDProductImage"
+            android:id="@+id/ivSPProductImage"
             android:layout_width="90dp"
             android:layout_height="90dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +28,8 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="Scotch Premium"
-            app:layout_constraintStart_toEndOf="@id/ivBDProductImage"
-            app:layout_constraintTop_toTopOf="@id/ivBDProductImage"
+            app:layout_constraintStart_toEndOf="@id/ivSPProductImage"
+            app:layout_constraintTop_toTopOf="@id/ivSPProductImage"
             android:layout_marginTop="7dp"
             android:layout_marginStart="18dp"
             android:maxLines="2"

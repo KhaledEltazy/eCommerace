@@ -22,10 +22,14 @@ class MainCategoryViewmodel @Inject constructor(
     private val _bestDeals = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val bestDeals : StateFlow<Resource<List<Product>>> = _bestDeals
 
+    private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
+    val bestProducts : StateFlow<Resource<List<Product>>> = _bestProducts
+
 
     init {
         fetchSpecialProduct()
         fetchBestDeals()
+        fetchBestProducts()
     }
 
     private fun fetchSpecialProduct(){
@@ -62,6 +66,24 @@ class MainCategoryViewmodel @Inject constructor(
             }.addOnFailureListener {
                 viewModelScope.launch {
                     _bestDeals.emit(Resource.Error(it.message.toString()))
+                }
+            }
+    }
+
+    private fun fetchBestProducts(){
+        viewModelScope.launch {
+            _bestProducts.emit(Resource.Loading())
+        }
+        firestore.collection("Products")
+            .get()
+            .addOnSuccessListener { result->
+                val bestProductList = result.toObjects(Product::class.java)
+                viewModelScope.launch {
+                    _bestProducts.emit(Resource.Success(bestProductList))
+                }
+            }.addOnFailureListener {
+                viewModelScope.launch {
+                    _bestProducts.emit(Resource.Error(it.message.toString()))
                 }
             }
     }

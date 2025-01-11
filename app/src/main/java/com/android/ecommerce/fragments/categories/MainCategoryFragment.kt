@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.ecommerce.R
 import com.android.ecommerce.adapters.BestDealsAdapter
+import com.android.ecommerce.adapters.BestProductsAdapter
 import com.android.ecommerce.adapters.SpecialProductAdapter
 import com.android.ecommerce.databinding.FragmentCategoryMainBinding
 import com.android.ecommerce.util.Resource
@@ -25,6 +27,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
     private lateinit var binding : FragmentCategoryMainBinding
     private lateinit var specialProductAdapter: SpecialProductAdapter
     private lateinit var bestDealsAdapter : BestDealsAdapter
+    private lateinit var bestProductAdapter : BestProductsAdapter
     val TAG = "MainCategoryFragment"
     private val viewmodel by viewModels<MainCategoryViewmodel>()
 
@@ -43,6 +46,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
 
         setupSpecialProductRv()
         setupBestDealsRv()
+        setupBestProductRv()
 
         lifecycleScope.launch {
             viewmodel.specialProduct.collect{
@@ -83,6 +87,27 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            viewmodel.bestProducts.collect{
+                when(it){
+                    is Resource.Loading ->{
+                        showLoading()
+                    }
+                    is Resource.Success ->{
+                        bestProductAdapter.differ.submitList(it.data)
+                        hideLoading()
+                    }
+                    is Resource.Error ->{
+                        hideLoading()
+                        Log.e(TAG,it.message.toString())
+                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
     }
 
     private fun showLoading(){
@@ -108,6 +133,15 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
         binding.rvBestDealsProducts.apply {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
             adapter = bestDealsAdapter
+        }
+    }
+
+    //implementing recyclerView of BestProduct
+    private fun setupBestProductRv(){
+        bestProductAdapter = BestProductsAdapter()
+        binding.rvBestProducts.apply {
+            layoutManager = GridLayoutManager(requireContext(),2,GridLayoutManager.VERTICAL,false)
+            adapter = bestProductAdapter
         }
     }
 }
