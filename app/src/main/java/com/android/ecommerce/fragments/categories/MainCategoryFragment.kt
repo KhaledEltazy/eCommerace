@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -48,6 +49,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
         setupBestDealsRv()
         setupBestProductRv()
 
+        //specialProducts Collecting data
         lifecycleScope.launch {
             viewmodel.specialProduct.collect{
                 when(it){
@@ -68,6 +70,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
             }
         }
 
+        //bestDeals Collecting data
         lifecycleScope.launch {
             viewmodel.bestDeals.collect{
                 when(it){
@@ -88,18 +91,19 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
             }
         }
 
+        //bestProduct collecting data
         lifecycleScope.launch {
             viewmodel.bestProducts.collect{
                 when(it){
                     is Resource.Loading ->{
-                        showLoading()
+                        binding.bestProductProgressBar.visibility = View.VISIBLE
                     }
                     is Resource.Success ->{
                         bestProductAdapter.differ.submitList(it.data)
-                        hideLoading()
+                        binding.bestProductProgressBar.visibility = View.GONE
                     }
                     is Resource.Error ->{
-                        hideLoading()
+                        binding.bestProductProgressBar.visibility = View.GONE
                         Log.e(TAG,it.message.toString())
                         Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
                     }
@@ -107,6 +111,14 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
                 }
             }
         }
+
+        binding.nestedScrollMainCategory.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener{
+            v,_,scrollV,_,_ ->
+            if (v.getChildAt(0).bottom <= v.height + scrollV){
+                viewmodel.fetchBestProducts()
+            }
+
+        })
 
     }
 

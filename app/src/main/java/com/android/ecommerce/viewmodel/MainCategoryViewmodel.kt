@@ -25,6 +25,7 @@ class MainCategoryViewmodel @Inject constructor(
     private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val bestProducts : StateFlow<Resource<List<Product>>> = _bestProducts
 
+    private val pagingInfo = PageInfo()
 
     init {
         fetchSpecialProduct()
@@ -70,21 +71,34 @@ class MainCategoryViewmodel @Inject constructor(
             }
     }
 
-    private fun fetchBestProducts(){
+     fun fetchBestProducts(){
+         if (!pagingInfo.isPagingEnd){
         viewModelScope.launch {
             _bestProducts.emit(Resource.Loading())
         }
-        firestore.collection("Products")
+        firestore.collection("Products").limit(pagingInfo.bestProductPage * 3)
             .get()
             .addOnSuccessListener { result->
                 val bestProductList = result.toObjects(Product::class.java)
+                pagingInfo.isPagingEnd = bestProductList == pagingInfo.oldBestProduct
+                pagingInfo.oldBestProduct = bestProductList
                 viewModelScope.launch {
                     _bestProducts.emit(Resource.Success(bestProductList))
                 }
+                pagingInfo.bestProductPage++
             }.addOnFailureListener {
                 viewModelScope.launch {
                     _bestProducts.emit(Resource.Error(it.message.toString()))
                 }
             }
     }
+     }
+}
+
+internal data class PageInfo(
+     var bestProductPage : Long = 1,
+    var oldBestProduct : List<Product> = emptyList(),
+    var isPagingEnd : Boolean = false
+){
+
 }
