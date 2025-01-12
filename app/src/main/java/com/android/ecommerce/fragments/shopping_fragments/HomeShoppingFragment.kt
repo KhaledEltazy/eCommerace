@@ -14,8 +14,10 @@ import com.android.ecommerce.fragments.categories.FurnitureFragment
 import com.android.ecommerce.fragments.categories.MainCategoryFragment
 import com.android.ecommerce.fragments.categories.TableFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class HomeShoppingFragment : Fragment() {
    private lateinit var binding : FragmentHomeShoppingBinding
     override fun onCreateView(
