@@ -29,4 +29,7 @@
     <string name="best_deals">Best Deals</string>
     <string name="best_products">Best Products</string>
     <string name="categories">Categories</string>
+    <string name="color">Color</string>
+    <string name="sizes">Sizes</string>
+    <string name="add_to_card">Add to Card</string>
 </resources>
