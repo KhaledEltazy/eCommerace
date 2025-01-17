@@ -46,5 +46,11 @@ class SpecialProductAdapter : RecyclerView.Adapter<SpecialProductAdapter.Special
         val currentList = differ.currentList[position]
 
         holder.bind(currentList)
+
+        holder.itemView.setOnClickListener {
+            onClickedItem?.invoke(currentList)
+        }
     }
+
+    var onClickedItem : ((Product) -> Unit)? = null
 }

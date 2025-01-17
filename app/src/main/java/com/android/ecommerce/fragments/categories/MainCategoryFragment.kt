@@ -10,15 +10,21 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.ecommerce.R
+import com.android.ecommerce.activities.ShoppingActivity
 import com.android.ecommerce.adapters.BestDealsAdapter
 import com.android.ecommerce.adapters.BestProductsAdapter
 import com.android.ecommerce.adapters.SpecialProductAdapter
 import com.android.ecommerce.databinding.FragmentCategoryMainBinding
+import com.android.ecommerce.util.Constants.PRODUCT
 import com.android.ecommerce.util.Resource
+import com.android.ecommerce.util.hidingBottomNavView
+import com.android.ecommerce.util.showingBottomNavView
 import com.android.ecommerce.viewmodel.MainCategoryViewmodel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -48,6 +54,27 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
         setupSpecialProductRv()
         setupBestDealsRv()
         setupBestProductRv()
+
+        bestDealsAdapter.onClickedItem = {
+            val bundle = Bundle().apply {
+                putParcelable(PRODUCT,it)
+            }
+            findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
+        }
+
+        bestProductAdapter.onClickedItem = {
+            val bundle = Bundle().apply {
+                putParcelable(PRODUCT,it)
+            }
+            findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
+        }
+
+        specialProductAdapter.onClickedItem = {
+            val bundle = Bundle().apply {
+                putParcelable(PRODUCT,it)
+            }
+            findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
+        }
 
         //specialProducts Collecting data
         lifecycleScope.launch {
@@ -155,5 +182,12 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
             layoutManager = GridLayoutManager(requireContext(),2,GridLayoutManager.VERTICAL,false)
             adapter = bestProductAdapter
         }
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showingBottomNavView()
     }
 }

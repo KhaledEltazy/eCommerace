@@ -9,20 +9,41 @@
         android:id="@+id/homeShoppingFragment"
         android:name="com.android.ecommerce.fragments.shopping_fragments.HomeShoppingFragment"
         android:label="fragment_home_shopping"
-        tools:layout="@layout/fragment_home_shopping" />
+        tools:layout="@layout/fragment_home_shopping" >
+        <action
+            android:id="@+id/action_homeShoppingFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.android.ecommerce.fragments.shopping_fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.android.ecommerce.fragments.shopping_fragments.CartFragment"
         android:label="fragment_market"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.android.ecommerce.fragments.shopping_fragments.ProfileFragment"
         android:label="fragment_account_info"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.android.ecommerce.fragments.shopping_fragments.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="product"
+            app:argType="com.android.ecommerce.data.Product" />
+    </fragment>
 </navigation>

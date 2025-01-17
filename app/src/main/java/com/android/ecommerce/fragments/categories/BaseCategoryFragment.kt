@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.ecommerce.R
 import com.android.ecommerce.adapters.BestProductsAdapter
 import com.android.ecommerce.databinding.FragmentBaseCategoryBinding
+import com.android.ecommerce.util.Constants.PRODUCT
+import com.android.ecommerce.util.showingBottomNavView
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     private lateinit var binding : FragmentBaseCategoryBinding
@@ -32,6 +35,19 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
         setOfferProductRV()
         setBestProductsRV()
 
+        offerProductAdapter.onClickedItem = {
+            val bundle = Bundle().apply {
+                putParcelable(PRODUCT,it)
+            }
+            findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
+        }
+
+        bestProductsAdapter.onClickedItem = {
+            val bundle = Bundle().apply {
+                putParcelable(PRODUCT,it)
+            }
+            findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
+        }
 
         binding.rvBaseCategoryOfferProducts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             private var isLoading = false
@@ -100,5 +116,10 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             adapter = offerProductAdapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showingBottomNavView()
     }
 }
