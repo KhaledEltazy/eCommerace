@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollBaseCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintBottom_toBottomOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,20 +20,21 @@
         >
 
         <ProgressBar
-            android:id="@+id/progressBarBC"
+            android:id="@+id/progressBarOfferProductsBC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/rvBaseCategoryOfferProducts"
+            app:layout_constraintEnd_toEndOf="@id/rvBaseCategoryOfferProducts"
+            app:layout_constraintTop_toTopOf="@id/rvBaseCategoryOfferProducts"
+            app:layout_constraintBottom_toBottomOf="@id/rvBaseCategoryOfferProducts"
             android:backgroundTint="@color/g_gray700"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBaseCategoryProducts"
+            android:id="@+id/rvBaseCategoryOfferProducts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,30 +48,33 @@
         android:textStyle="bold"
         android:text="@string/best_products"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/rvBaseCategoryProducts"
+        app:layout_constraintTop_toBottomOf="@id/rvBaseCategoryOfferProducts"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBestProductBC"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tvBestProductBC"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBestProductBC"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"/>
+            android:overScrollMode="never"
+            android:layout_marginEnd="16dp"/>
 
         <ProgressBar
             android:id="@+id/bestProductProgressBarBC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:backgroundTint="@color/g_gray700"/>
+            app:layout_constraintEnd_toEndOf="@id/rvBestProductBC"
+            app:layout_constraintStart_toStartOf="@id/rvBestProductBC"
+            app:layout_constraintBottom_toBottomOf="@id/rvBestProductBC"
+            app:layout_constraintTop_toTopOf="@id/rvBestProductBC"
+            android:backgroundTint="@color/g_gray700"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
