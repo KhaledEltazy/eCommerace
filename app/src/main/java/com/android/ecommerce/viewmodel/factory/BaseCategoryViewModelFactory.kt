@@ -6,7 +6,7 @@ import com.android.ecommerce.data.Category
 import com.android.ecommerce.viewmodel.BaseCategoryViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
-class CategoryViewModelFactory(
+class BaseCategoryViewModelFactory(
     val fireStore  : FirebaseFirestore,
     val category: Category
 ) : ViewModelProvider.Factory {

@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.android.ecommerce.data.Category
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.viewmodel.BaseCategoryViewModel
-import com.android.ecommerce.viewmodel.factory.CategoryViewModelFactory
+import com.android.ecommerce.viewmodel.factory.BaseCategoryViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ class ChairFragment : BaseCategoryFragment() {
     lateinit var fireStore : FirebaseFirestore
 
     private val viewModel by viewModels<BaseCategoryViewModel>{
-        CategoryViewModelFactory(fireStore, Category.Chair)
+        BaseCategoryViewModelFactory(fireStore, Category.Chair)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
