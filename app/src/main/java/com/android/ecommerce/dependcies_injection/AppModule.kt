@@ -4,9 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.android.ecommerce.firebase.FirebaseCommon
 import com.android.ecommerce.util.Constants.INTRODUCTION_SHARED
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import dagger.Module
 import dagger.Provides
@@ -32,4 +34,11 @@ object AppModule {
     fun introductionFragmentSharedPref(
         application : Application
     ) = application.getSharedPreferences(INTRODUCTION_SHARED,MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun provideFirebaseCommon(
+        firestore: FirebaseFirestore,
+        firebaseAuth: FirebaseAuth
+    ) = FirebaseCommon(firestore,firebaseAuth)
 }
