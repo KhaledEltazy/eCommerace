@@ -32,4 +32,7 @@
     <string name="color">Color</string>
     <string name="sizes">Sizes</string>
     <string name="add_to_card">Add to Card</string>
+    <string name="my_cart">My Cart</string>
+    <string name="total">Total</string>
+    <string name="your_shopping_cart_is_empty">Your shopping cart is empty</string>
 </resources>
