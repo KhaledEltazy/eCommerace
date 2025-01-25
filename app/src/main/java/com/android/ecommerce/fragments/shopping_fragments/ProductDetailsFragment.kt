@@ -18,6 +18,7 @@ import com.android.ecommerce.adapters.SizeAdapter
 import com.android.ecommerce.adapters.Viewpager2Adapter
 import com.android.ecommerce.data.CartProduct
 import com.android.ecommerce.databinding.FragmentProductDetailsBinding
+import com.android.ecommerce.helper.getProductPrice
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.viewmodel.DetailsViewModel
@@ -72,7 +73,7 @@ class ProductDetailsFragment : Fragment() {
             }
 
             tvProductNameProductDetails.text = prodcut.productName
-            tvPriceProductDetails.text = prodcut.price.toString()
+            tvPriceProductDetails.text = prodcut.offer.getProductPrice(prodcut.price).toString()
 
             if(prodcut.productDescription != null)
                 tvProductDescriptionProductDetails.text = prodcut.productDescription
@@ -132,11 +133,11 @@ class ProductDetailsFragment : Fragment() {
                         binding.btnAddToCart.startAnimation()
                     }
                     is Resource.Success ->{
-                        binding.btnAddToCart.clearAnimation()
+                        binding.btnAddToCart.revertAnimation()
                         Toast.makeText(requireContext(),"product add to cart successfully",Toast.LENGTH_LONG).show()
                     }
                     is Resource.Error ->{
-                        binding.btnAddToCart.clearAnimation()
+                        binding.btnAddToCart.revertAnimation()
                         Toast.makeText(requireContext(),it.message.toString(),Toast.LENGTH_LONG).show()
                     }
                     else -> Unit

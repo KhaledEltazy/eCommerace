@@ -25,7 +25,7 @@ class CartFragmentAdapter : RecyclerView.Adapter<CartFragmentAdapter.CartFragmen
             } else {
                 binding.productPriceCartItemTv.text = cart.product.price.toString()
             }
-            Glide.with(itemView).load(cart.product.images[0]!!).into(binding.productImageCartItemIV)
+            //Glide.with(itemView).load(cart.product.images[0]!!).into(binding.productImageCartItemIV)
 
             if(cart.selectedColor != null){
             val imageDrawable = ColorDrawable(cart.selectedColor!!)
@@ -70,6 +70,8 @@ class CartFragmentAdapter : RecyclerView.Adapter<CartFragmentAdapter.CartFragmen
     override fun onBindViewHolder(holder: CartFragmentViewHolder, position: Int) {
         val currentCartList = differ.currentList[position]
 
+        holder.bind(currentCartList)
+
         holder.itemView.setOnClickListener {
             onClickedItem?.invoke(currentCartList)
         }
@@ -80,10 +82,15 @@ class CartFragmentAdapter : RecyclerView.Adapter<CartFragmentAdapter.CartFragmen
         holder.binding.minusQuantityCartItemIv.setOnClickListener {
             onMinusIconSelected?.invoke(currentCartList)
         }
+
+        holder.binding.deleteCart.setOnClickListener {
+            onDeleteIconClicked?.invoke(currentCartList)
+        }
     }
 
     var onClickedItem : ((CartProduct) -> Unit)? = null
-    val onPlusIconSelected : ((CartProduct) -> Unit)? = null
-    val onMinusIconSelected : ((CartProduct) -> Unit)? = null
+    var onPlusIconSelected : ((CartProduct) -> Unit)? = null
+    var onMinusIconSelected : ((CartProduct) -> Unit)? = null
+    var onDeleteIconClicked : ((CartProduct) -> Unit)? = null
 
 }
