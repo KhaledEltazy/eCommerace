@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.shopping_fragments.AddressFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAddressFragment"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/g_card_background"
+>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/closeIconAddressFragment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="6dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            style="@style/h3"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/closeIconAddressFragment"
+            app:layout_constraintBottom_toBottomOf="@id/closeIconAddressFragment"
+            app:layout_constraintStart_toEndOf="@id/closeIconAddressFragment"
+            android:layout_marginStart="6dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/addressETAddressFragment"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        style="@style/editText"
+        android:textSize="16sp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="6dp"
+        android:singleLine="true"
+        android:layout_marginTop="12dp"
+        android:hint="@string/address_location_home"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toBottomOf="@id/cardViewAddressFragment"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/fullNameETAddressFragment"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        style="@style/editText"
+        android:textSize="16sp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="6dp"
+        android:singleLine="true"
+        android:layout_marginTop="12dp"
+        android:hint="@string/full_name"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toBottomOf="@id/addressETAddressFragment"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/streetETAddressFragment"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        style="@style/editText"
+        android:textSize="16sp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="6dp"
+        android:singleLine="true"
+        android:layout_marginTop="12dp"
+        android:hint="@string/street"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toBottomOf="@id/fullNameETAddressFragment"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/phoneETAddressFragment"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        style="@style/editText"
+        android:textSize="16sp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="6dp"
+        android:singleLine="true"
+        android:layout_marginTop="12dp"
+        android:hint="@string/phone"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toBottomOf="@id/streetETAddressFragment"
+        android:inputType="phone"
+        />
+
+    <LinearLayout
+        android:id="@+id/cityAndStateLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toBottomOf="@id/phoneETAddressFragment"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/cityETAddressFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/editText"
+            android:textSize="16sp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="6dp"
+            android:singleLine="true"
+            android:hint="@string/city"
+            android:layout_marginEnd="4dp"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/stateETAddressFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/editText"
+            android:textSize="16sp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="6dp"
+            android:singleLine="true"
+            android:hint="@string/state"
+            android:layout_marginStart="4dp"
+            android:inputType="text"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="@id/leftGl"
+        app:layout_constraintEnd_toEndOf="@id/rightGl"
+        app:layout_constraintTop_toBottomOf="@id/cityAndStateLinearLayout"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        >
+
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/deleteBtnAddressFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/whiteButtonStyle"
+            android:singleLine="true"
+            android:text="@string/delete"
+            android:layout_marginEnd="4dp"
+            />
+
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/saveBtnddressFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/blueButtonStyle"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:text="@string/save"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightGl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".96"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/leftGl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".04"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
