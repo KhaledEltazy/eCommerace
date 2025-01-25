@@ -10,38 +10,36 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.ecommerce.data.CartProduct
 import com.android.ecommerce.data.Product
 import com.android.ecommerce.databinding.CartProductItemBinding
+import com.android.ecommerce.helper.getProductPrice
 import com.bumptech.glide.Glide
 
 class CartFragmentAdapter : RecyclerView.Adapter<CartFragmentAdapter.CartFragmentViewHolder>() {
 
-    inner class CartFragmentViewHolder(val binding : CartProductItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class CartFragmentViewHolder(val binding : CartProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind( cart : CartProduct){
-            binding.productNameCartItemTv.text = cart.product.productName
-            binding.quantityCartItemTv.text = cart.quantity.toString()
-            if (cart.product.offer != null){
-                binding.productPriceCartItemTv.text =
-                    "${Math.ceil((((1-cart.product.offer)*cart.product.price)*100).toDouble())/100}"
-            } else {
-                binding.productPriceCartItemTv.text = cart.product.price.toString()
-            }
-            //Glide.with(itemView).load(cart.product.images[0]!!).into(binding.productImageCartItemIV)
+        fun bind(cart: CartProduct) {
+            binding.apply {
+                productNameCartItemTv.text = cart.product.productName
+                quantityCartItemTv.text = cart.quantity.toString()
+                productPriceCartItemTv.text = cart.product.offer.getProductPrice(cart.product.price).toString()
+                //Glide.with(itemView).load(cart.product.images[0]!!).into(binding.productImageCartItemIV)
 
-            if(cart.selectedColor != null){
-            val imageDrawable = ColorDrawable(cart.selectedColor!!)
-            binding.colorIconCartItemIv.setImageDrawable(imageDrawable)
-            } else {
-                binding.colorIconCartItemIv.visibility = View.GONE
-            }
+                if (cart.selectedColor != null) {
+                    val imageDrawable = ColorDrawable(cart.selectedColor!!)
+                    colorIconCartItemIv.setImageDrawable(imageDrawable)
+                } else {
+                    colorIconCartItemIv.visibility = View.GONE
+                }
 
-            if(cart.selectedSize != null) {
-                binding.productSizeCartItem.text = cart.selectedSize
-            } else {
-                binding.sizeIconCartItemIv.visibility = View.GONE
-                binding.productSizeCartItem.visibility = View.GONE
+                if (cart.selectedSize != null) {
+                    productSizeCartItem.text = cart.selectedSize
+                } else {
+                    sizeIconCartItemIv.visibility = View.GONE
+                    productSizeCartItem.visibility = View.GONE
+                }
             }
         }
-        }
+    }
 
     val diffUtil = object : DiffUtil.ItemCallback<CartProduct>() {
         override fun areItemsTheSame(oldItem: CartProduct, newItem: CartProduct): Boolean {

@@ -13,9 +13,11 @@ import com.android.ecommerce.data.Address
 import com.android.ecommerce.databinding.FragmentAddressBinding
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.viewmodel.AddressViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
+@AndroidEntryPoint
 class AddressFragment : Fragment() {
     private lateinit var binding : FragmentAddressBinding
     val viewModel by viewModels<AddressViewModel>()
