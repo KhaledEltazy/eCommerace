@@ -78,4 +78,9 @@
         android:name="com.android.ecommerce.fragments.settings.UserAccountFragment"
         android:label="UserAccountFragment"
         tools:layout="@layout/fragment_user_account"/>
+    <fragment
+        android:id="@+id/allOrdersFragment"
+        android:name="com.android.ecommerce.fragments.shopping_fragments.AllOrdersFragment"
+        android:label="AllOrdersFragment"
+        tools:layout="@layout/fragment_orders"/>
 </navigation>
