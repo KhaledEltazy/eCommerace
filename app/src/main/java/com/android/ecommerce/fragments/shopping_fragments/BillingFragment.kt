@@ -6,19 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.ecommerce.R
 import com.android.ecommerce.adapters.AddressAdapter
 import com.android.ecommerce.adapters.BillingProductAdapter
+import com.android.ecommerce.data.Address
 import com.android.ecommerce.data.CartProduct
+import com.android.ecommerce.data.order.Order
+import com.android.ecommerce.data.order.OrderStatus
 import com.android.ecommerce.databinding.FragmentBillingBinding
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.viewmodel.BillingViewModel
+import com.android.ecommerce.viewmodel.OrderViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,10 +38,13 @@ class BillingFragment : Fragment() {
     private val billingAdapter by lazy{
         BillingProductAdapter()
     }
-    private val viewModel by viewModels<BillingViewModel>()
+    private val billingViewModel by viewModels<BillingViewModel>()
     private val args by navArgs<BillingFragmentArgs>()
     private var products = emptyList<CartProduct>()
     private var totalPrice = 0f
+
+    private var selectedAddress : Address? = null
+    private val orderViewModel by viewModels<OrderViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,10 +60,15 @@ class BillingFragment : Fragment() {
         setAddressRv()
         setBillingProductRv()
 
+        //to get productsOrdered list and total price
         products = args.product.toList()
         billingAdapter.differ.submitList(products)
         totalPrice = args.totalPrice
 
+        //to get selected address
+        addressAdapter.onAddressClicked = {
+            selectedAddress = it
+        }
 
         binding.apply {
             //handle plus icon to nav to address fragment
@@ -65,10 +78,42 @@ class BillingFragment : Fragment() {
 
             //showing total price
             tvTotalPrice.text = "$ ${totalPrice}"
+
+            //handle place order button
+            placeOrderBtn.setOnClickListener {
+                if (selectedAddress == null){
+                    Toast.makeText(requireContext(),"Please select an Address",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+                }
+                showOrderConfirmationDialog()
+            }
         }
 
+        //collect the data from order
         lifecycleScope.launch {
-            viewModel.getAddress.collect{
+            orderViewModel.order.collect{
+                when(it){
+                    is Resource.Loading ->{
+                        binding.placeOrderBtn.startAnimation()
+                }
+                    is Resource.Success ->{
+                        binding.placeOrderBtn.revertAnimation()
+                        findNavController().navigateUp()
+                        Snackbar.make(requireView(),"Your order was placed",Snackbar.LENGTH_LONG).show()
+                    }
+                    is Resource.Error ->{
+                        binding.placeOrderBtn.revertAnimation()
+                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    }
+                    else -> Unit
+            }
+            }
+        }
+
+
+        //collect the data from getting address
+        lifecycleScope.launch {
+            billingViewModel.getAddress.collect{
                 when(it){
                     is Resource.Loading ->{
                         binding.progressbarAddress.visibility = View.VISIBLE
@@ -85,6 +130,28 @@ class BillingFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showOrderConfirmationDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext()).apply {
+            setTitle("Order Items")
+            setMessage("Do you want to order the current items?")
+            setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            setPositiveButton("Yes") { dialog, _ ->
+                val order = Order(
+                    OrderStatus.Ordered.status,
+                    totalPrice,
+                    products,
+                    selectedAddress!!
+                )
+                orderViewModel.placeOrder(order)
+                dialog.dismiss()
+            }
+        }
+        alertDialog.create()
+            .show()
     }
 
     private fun setBillingProductRv() {

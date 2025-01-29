@@ -210,7 +210,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
-            android:id="@+id/buttonPlaceOrder"
+            android:id="@+id/place_order_btn"
             style="@style/blueButtonStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/totalBoxContainer"

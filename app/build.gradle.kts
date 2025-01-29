@@ -132,6 +132,9 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.2")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.2")
 
+    //Firebase CloudStorage
+    implementation ("com.google.firebase:firebase-storage:21.0.1")
+
 }
 
     kapt {
