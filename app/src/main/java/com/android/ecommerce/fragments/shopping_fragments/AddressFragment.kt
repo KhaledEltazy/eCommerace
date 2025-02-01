@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.android.ecommerce.R
 import com.android.ecommerce.data.Address
 import com.android.ecommerce.databinding.FragmentAddressBinding
@@ -20,7 +21,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class AddressFragment : Fragment() {
     private lateinit var binding : FragmentAddressBinding
-    val viewModel by viewModels<AddressViewModel>()
+    private val viewModel by viewModels<AddressViewModel>()
+    private val arg by navArgs<AddressFragmentArgs>()
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,9 +34,23 @@ class AddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val address = arg.address
+        if (address == null){
+            binding.deleteBtnAddressFragment.visibility = View.GONE
+        } else {
+            binding.apply {
+                addressName.setText(address.addressTitle)
+                fullNameETAddressFragment.setText(address.fullName)
+                stateETAddressFragment.setText(address.state)
+                phoneETAddressFragment.setText(address.phone)
+                cityETAddressFragment.setText(address.city)
+                streetETAddressFragment.setText(address.street)
+            }
+        }
+
         binding.apply {
             saveBtnddressFragment.setOnClickListener {
-                val addressTitle = addressETAddressFragment.text.toString()
+                val addressTitle = addressName.text.toString()
                 val fullName = fullNameETAddressFragment.text.toString()
                 val phone = phoneETAddressFragment.text.toString()
                 val street = streetETAddressFragment.text.toString()
@@ -70,5 +86,7 @@ class AddressFragment : Fragment() {
                 Toast.makeText(requireContext(),it,Toast.LENGTH_LONG).show()
             }
         }
+
+
     }
 }

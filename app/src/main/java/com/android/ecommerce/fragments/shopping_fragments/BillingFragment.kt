@@ -68,6 +68,12 @@ class BillingFragment : Fragment() {
         //to get selected address
         addressAdapter.onAddressClicked = {
             selectedAddress = it
+            if (!args.payment) {
+                val bundle = Bundle().apply {
+                    putParcelable("address", selectedAddress)
+                }
+                findNavController().navigate(R.id.action_billingFragment_to_addressFragment, bundle)
+            }
         }
 
         binding.apply {
@@ -86,6 +92,14 @@ class BillingFragment : Fragment() {
                 return@setOnClickListener
                 }
                 showOrderConfirmationDialog()
+            }
+
+            //check if payment true or not
+            if(!args.payment){
+                placeOrderBtn.visibility = View.INVISIBLE
+                totalBoxContainer.visibility = View.INVISIBLE
+                middleLine.visibility = View.INVISIBLE
+                bottomLine.visibility = View.INVISIBLE
             }
         }
 
