@@ -32,7 +32,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_close" />
+                    android:src="@drawable/close" />
 
                 <TextView
                     app:layout_constraintBottom_toBottomOf="@id/imageCloseBilling"

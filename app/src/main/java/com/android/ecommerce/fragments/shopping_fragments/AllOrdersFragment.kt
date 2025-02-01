@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.ecommerce.R
 import com.android.ecommerce.adapters.AllOrdersAdapter
 import com.android.ecommerce.databinding.FragmentOrdersBinding
 import com.android.ecommerce.util.Resource
@@ -65,6 +66,11 @@ class AllOrdersFragment : Fragment() {
                     else -> Unit
                 }
             }
+        }
+
+        allOrdersAdapter.onClicked ={
+           val action = AllOrdersFragmentDirections.actionAllOrdersFragmentToOrderDetailsFragment(it)
+            findNavController().navigate(action)
         }
 
 
