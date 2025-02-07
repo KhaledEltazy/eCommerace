@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.ecommerce.R
 import com.android.ecommerce.activities.ShoppingActivity
 import com.android.ecommerce.adapters.BestDealsAdapter
@@ -139,6 +140,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
             }
         }
 
+        //paging for bestProducts
         binding.nestedScrollMainCategory.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener{
             v,_,scrollV,_,_ ->
             if (v.getChildAt(0).bottom <= v.height + scrollV){
@@ -161,8 +163,26 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
     private fun setupSpecialProductRv(){
         specialProductAdapter = SpecialProductAdapter()
         binding.rvSpecialProduct.apply {
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = specialProductAdapter
+            //paging on scrolling by RecyclerView
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                    // Ensure we are scrolling right (dx > 0) and not already fetching data
+                    if (dx > 0) {
+                        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+                            viewmodel.fetchSpecialProduct()
+                        }
+                    }
+                }
+            })
         }
     }
 
@@ -172,6 +192,24 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
         binding.rvBestDealsProducts.apply {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
             adapter = bestDealsAdapter
+            //paging on scrolling by RecyclerView
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                    // Ensure we are scrolling right (dx > 0) and not already fetching data
+                    if (dx > 0) {
+                        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+                            viewmodel.fetchBestDeals()
+                        }
+                    }
+                }
+            })
         }
     }
 

@@ -7,16 +7,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.android.ecommerce.data.Product
 import com.android.ecommerce.databinding.BestDealsRvItemBinding
+import com.android.ecommerce.helper.getProductPrice
 import com.bumptech.glide.Glide
 
 class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHolder>() {
     inner class BestDealsViewHolder(private val binding : BestDealsRvItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(product : Product){
-            //Glide.with(itemView).load(product.images[0]).into(binding.ivBDProductImage)
+            Glide.with(itemView).load(product.images[0]).into(binding.ivBDProductImage)
             binding.tvBDProductName.text = product.productName
             binding.tvBDOldPrice.text = product.price.toString()
-            binding.tvBDNewPrice.text = "${Math.ceil((((1-product.offer!!)*product.price)*100).toDouble())/100}"
+            product.offer?.let {
+                val price = it.getProductPrice(product.price)
+                binding.tvBDNewPrice.text = price.toString()
+            }
         }
     }
         private val diffResult = object : DiffUtil.ItemCallback<Product>() {

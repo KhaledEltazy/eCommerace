@@ -34,14 +34,14 @@ class BaseCategoryViewModel(
         if (!pagingInfoOfferProducts.isPagingEndOffer && !isFetchingOffers) {
             isFetchingOffers = true
             _offerProduct.value = Resource.Loading()
-            fireStore.collection("Products")
+            fireStore.collection("products")
                 .whereEqualTo("category", category.category)
                 .whereNotEqualTo("offer", null)
-                .limit(pagingInfoOfferProducts.offerProductPage * 4)
+                .limit(pagingInfoOfferProducts.offerProductPage * 6)
                 .get()
                 .addOnSuccessListener { snapshot ->
                     val products = snapshot.toObjects(Product::class.java)
-                    pagingInfoOfferProducts.isPagingEndOffer = products.isEmpty() || products.size < 5
+                    pagingInfoOfferProducts.isPagingEndOffer = products.isEmpty() || products.size < 6
                     pagingInfoOfferProducts.oldOfferProduct = products
                     pagingInfoOfferProducts.offerProductPage++
                     _offerProduct.value = Resource.Success(products)
@@ -59,11 +59,11 @@ class BaseCategoryViewModel(
             _bestProduct.value = Resource.Loading()
             fireStore.collection("Products")
                 .whereEqualTo("category", category.category)
-                .limit(pagingInfoBestProducts.bestProductPage * 5)
+                .limit(pagingInfoBestProducts.bestProductPage * 6)
                 .get()
                 .addOnSuccessListener { snapshot ->
                     val products = snapshot.toObjects(Product::class.java)
-                    pagingInfoBestProducts.isPagingEnd = products.isEmpty() || products.size < 5
+                    pagingInfoBestProducts.isPagingEnd = products.isEmpty() || products.size < 6
                     pagingInfoBestProducts.oldBestProduct = products
                     pagingInfoBestProducts.bestProductPage++
                     _bestProduct.value = Resource.Success(products)

@@ -22,7 +22,7 @@ class CartFragmentAdapter : RecyclerView.Adapter<CartFragmentAdapter.CartFragmen
                 productNameCartItemTv.text = cart.product.productName
                 quantityCartItemTv.text = cart.quantity.toString()
                 productPriceCartItemTv.text = cart.product.offer.getProductPrice(cart.product.price).toString()
-                //Glide.with(itemView).load(cart.product.images[0]!!).into(binding.productImageCartItemIV)
+                Glide.with(itemView).load(cart.product.images[0]).into(productImageCartItemIV)
 
                 if (cart.selectedColor != null) {
                     val imageDrawable = ColorDrawable(cart.selectedColor!!)

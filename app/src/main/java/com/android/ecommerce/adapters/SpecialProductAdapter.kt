@@ -15,8 +15,7 @@ class SpecialProductAdapter : RecyclerView.Adapter<SpecialProductAdapter.Special
         fun bind(product: Product){
             binding.tvProductName.text = product.productName
             binding.tvProductPrice.text = product.price.toString()
-            //storage in firebase need cost i will solve this problem later
-            //Glide.with(itemView).load(product.images).into(binding.ivProductImage)
+            Glide.with(itemView).load(product.images).into(binding.ivSPProductImage)
         }
     }
 

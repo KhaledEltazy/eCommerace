@@ -11,7 +11,7 @@ import com.android.ecommerce.databinding.SizeItemBinding
 class SizeAdapter : RecyclerView.Adapter<SizeAdapter.SizeViewHolder>() {
     private var sizeSelectedPosition =-1
     inner class SizeViewHolder(private val binding : SizeItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(size : String,Position : Int){
+        fun bind(size : String,position : Int){
             binding.sizeChecked.text = size
             if (position == sizeSelectedPosition){
                     binding.sizeShadow.visibility = View.VISIBLE

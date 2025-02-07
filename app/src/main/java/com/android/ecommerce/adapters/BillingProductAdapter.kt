@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.android.ecommerce.data.Address
 import com.android.ecommerce.data.CartProduct
 import com.android.ecommerce.databinding.BillingProductsRvItemBinding
 import com.android.ecommerce.helper.getProductPrice
+import com.bumptech.glide.Glide
 
 class BillingProductAdapter : RecyclerView.Adapter<BillingProductAdapter.BillingViewHolder>() {
     inner class BillingViewHolder( val binding : BillingProductsRvItemBinding) : RecyclerView.ViewHolder(binding.root){
@@ -19,7 +19,7 @@ class BillingProductAdapter : RecyclerView.Adapter<BillingProductAdapter.Billing
                 tvProductCartName.text = cart.product.productName
                 tvBillingProductQuantity.text = cart.quantity.toString()
                 tvProductCartPrice.text = cart.product.offer.getProductPrice(cart.product.price).toString()
-                //Glide.with(itemView).load(cart.product.images[0]!!).into(binding.productImageCartItemIV)
+                Glide.with(itemView).load(cart.product.images[0]).into(imageCartProduct)
 
                 if (cart.selectedColor != null) {
                     val imageDrawable = ColorDrawable(cart.selectedColor)

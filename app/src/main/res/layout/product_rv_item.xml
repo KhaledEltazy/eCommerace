@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/img_product"
+            android:id="@+id/imageProduct"
             android:layout_width="114dp"
             android:layout_height="108dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/img_product"
-            app:layout_constraintTop_toBottomOf="@id/img_product"
-            app:layout_constraintEnd_toEndOf="@id/img_product">
+            app:layout_constraintStart_toStartOf="@id/imageProduct"
+            app:layout_constraintTop_toBottomOf="@id/imageProduct"
+            app:layout_constraintEnd_toEndOf="@id/imageProduct">
 
             <TextView
                 android:id="@+id/productNameTV"
@@ -81,7 +81,7 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/img_product"
+            app:layout_constraintStart_toStartOf="@id/imageProduct"
             app:layout_constraintTop_toBottomOf="@id/linear_product_name" />
 
 
