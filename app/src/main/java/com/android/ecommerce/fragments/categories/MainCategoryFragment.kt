@@ -22,6 +22,7 @@ import com.android.ecommerce.adapters.SpecialProductAdapter
 import com.android.ecommerce.databinding.FragmentCategoryMainBinding
 import com.android.ecommerce.util.Constants.PRODUCT
 import com.android.ecommerce.util.Resource
+import com.android.ecommerce.util.VerticalItemDecoration
 import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.util.showingBottomNavView
 import com.android.ecommerce.viewmodel.MainCategoryViewmodel
@@ -190,7 +191,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
     private fun setupBestDealsRv(){
         bestDealsAdapter = BestDealsAdapter()
         binding.rvBestDealsProducts.apply {
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             adapter = bestDealsAdapter
             //paging on scrolling by RecyclerView
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -219,6 +220,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
         binding.rvBestProducts.apply {
             layoutManager = GridLayoutManager(requireContext(),2,GridLayoutManager.VERTICAL,false)
             adapter = bestProductAdapter
+            addItemDecoration(VerticalItemDecoration())
         }
 
 

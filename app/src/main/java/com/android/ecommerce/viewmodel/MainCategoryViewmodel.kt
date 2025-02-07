@@ -41,9 +41,8 @@ class MainCategoryViewmodel @Inject constructor(
                 _specialProducts.emit(Resource.Loading())
             }
             //
-            firestore.collection("Products")
-                .whereNotEqualTo("color",null)
-                .whereNotEqualTo("size",null)
+            firestore.collection("products")
+                .whereNotEqualTo("sizes",null)
                 .limit(pagingInfoSpecialProducts.specialProductsPage * 6)
                 .get()
                 .addOnSuccessListener { result ->
@@ -67,7 +66,7 @@ class MainCategoryViewmodel @Inject constructor(
             viewModelScope.launch {
                 _bestDeals.emit(Resource.Loading())
             }
-            firestore.collection("Products")
+            firestore.collection("products")
                 .whereNotEqualTo("offer", null)
                 .limit(pagingInfoBestDeals.bestDealsPage * 6)
                 .get()
@@ -92,7 +91,7 @@ class MainCategoryViewmodel @Inject constructor(
         viewModelScope.launch {
             _bestProducts.emit(Resource.Loading())
         }
-        firestore.collection("Products").limit(pagingInfo.bestProductPage * 3)
+        firestore.collection("products").limit(pagingInfo.bestProductPage * 3)
             .get()
             .addOnSuccessListener { result->
                 val bestProductList = result.toObjects(Product::class.java)

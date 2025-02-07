@@ -57,7 +57,7 @@ class BaseCategoryViewModel(
         if (!pagingInfoBestProducts.isPagingEnd && !isFetchingBestProducts) {
             isFetchingBestProducts = true
             _bestProduct.value = Resource.Loading()
-            fireStore.collection("Products")
+            fireStore.collection("products")
                 .whereEqualTo("category", category.category)
                 .limit(pagingInfoBestProducts.bestProductPage * 6)
                 .get()
