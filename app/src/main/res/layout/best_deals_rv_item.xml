@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/g_card_background"
-    android:elevation="0dp"
+    android:backgroundTint="@color/g_card_background"
+    android:elevation="10dp"
+    app:cardCornerRadius="8dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="88dp">
+        android:layout_height="wrap_content"
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/ivBDProductImage"
@@ -17,8 +19,6 @@
             android:layout_height="64dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
             android:src="@drawable/khaled_black"/>
 
         <TextView
@@ -36,12 +36,12 @@
             android:textSize="9sp"/>
 
         <TextView
-            android:id="@+id/tvBDOldPrice"
+            android:id="@+id/tvPriceBestDeals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$2000"
             app:layout_constraintTop_toBottomOf="@id/tvBDProductName"
-            app:layout_constraintStart_toEndOf="@id/tvBDNewPrice"
+            app:layout_constraintStart_toEndOf="@id/tvOfferBestDeals"
             android:textColor="@color/g_gray700"
             android:textSize="12sp"
             android:fontFamily="@font/sf_pro_display"
@@ -49,7 +49,7 @@
             />
 
         <TextView
-            android:id="@+id/tvBDNewPrice"
+            android:id="@+id/tvOfferBestDeals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$1600"
@@ -62,15 +62,15 @@
 
         <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btn_see_product"
-            android:layout_width="83dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:background="@drawable/blue_background"
             android:fontFamily="@font/poppins_light"
-            android:text="See product"
+            android:text="@string/see_product"
             android:textColor="@color/white"
-            android:textSize="10dp"
+            android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/tvBDProductName"
+            app:layout_constraintStart_toEndOf="@id/tvPriceBestDeals"
             app:layout_constraintTop_toTopOf="@id/tvBDProductName"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,8 @@
 package com.android.ecommerce.adapters
 
+import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -11,15 +13,21 @@ import com.android.ecommerce.helper.getProductPrice
 import com.bumptech.glide.Glide
 
 class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHolder>() {
-    inner class BestDealsViewHolder(private val binding : BestDealsRvItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class BestDealsViewHolder(val binding : BestDealsRvItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product : Product){
-            Glide.with(itemView).load(product.images[0]).into(binding.ivBDProductImage)
-            binding.tvBDProductName.text = product.productName
-            binding.tvBDOldPrice.text = product.price.toString()
-            product.offer?.let {
-                val price = it.getProductPrice(product.price)
-                binding.tvBDNewPrice.text = price.toString()
+        fun bind(product: Product) {
+            binding.apply {
+                Glide.with(itemView).load(product.images[0]).into(ivBDProductImage)
+                tvBDProductName.text = product.productName
+                if (product.offer == null) {
+                    tvPriceBestDeals.text = "$ ${product.price}"
+                    tvOfferBestDeals.visibility = View.INVISIBLE
+                } else {
+                    tvPriceBestDeals.text = "$ ${product.price}"
+                    tvPriceBestDeals.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    tvOfferBestDeals.text = "$ ${product.offer.getProductPrice(product.price)}"
+
+                }
             }
         }
     }
@@ -50,7 +58,7 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.BestDealsViewHold
 
         holder.bind(currentProduct)
 
-        holder.itemView.setOnClickListener {
+        holder.binding.btnSeeProduct.setOnClickListener {
             onClickedItem?.invoke(currentProduct)
         }
     }
