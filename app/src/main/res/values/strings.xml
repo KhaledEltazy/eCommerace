@@ -62,4 +62,5 @@
     <string name="regional">Regional</string>
     <string name="logout">Logout</string>
     <string name="see_product">See product</string>
+    <string name="add_to_cart">Add to cart</string>
 </resources>

@@ -16,7 +16,7 @@ class VerticalItemDecoration(private val amount : Int = 15) : RecyclerView.ItemD
     }
 }
 
-class HorizontalItemDecoration(private val amount : Int = 15) : RecyclerView.ItemDecoration() {
+class HorizontalItemDecoration(private val amount : Int = 20) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.android.ecommerce.data.Product
 import com.android.ecommerce.util.Resource
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -42,7 +43,7 @@ class MainCategoryViewmodel @Inject constructor(
             }
             //
             firestore.collection("products")
-                .whereNotEqualTo("sizes",null)
+                .orderBy("id", Query.Direction.DESCENDING) // Newest IDs first
                 .limit(pagingInfoSpecialProducts.specialProductsPage * 6)
                 .get()
                 .addOnSuccessListener { result ->

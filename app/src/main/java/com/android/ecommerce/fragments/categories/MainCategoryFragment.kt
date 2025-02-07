@@ -19,6 +19,7 @@ import com.android.ecommerce.activities.ShoppingActivity
 import com.android.ecommerce.adapters.BestDealsAdapter
 import com.android.ecommerce.adapters.BestProductsAdapter
 import com.android.ecommerce.adapters.SpecialProductAdapter
+import com.android.ecommerce.data.CartProduct
 import com.android.ecommerce.databinding.FragmentCategoryMainBinding
 import com.android.ecommerce.util.Constants.PRODUCT
 import com.android.ecommerce.util.HorizontalItemDecoration
@@ -26,9 +27,11 @@ import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.VerticalItemDecoration
 import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.util.showingBottomNavView
+import com.android.ecommerce.viewmodel.DetailsViewModel
 import com.android.ecommerce.viewmodel.MainCategoryViewmodel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -40,6 +43,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
     private lateinit var bestProductAdapter : BestProductsAdapter
     val TAG = "MainCategoryFragment"
     private val viewmodel by viewModels<MainCategoryViewmodel>()
+    private val viewModelProductDetails by viewModels<DetailsViewModel>()
 
 
     override fun onCreateView(
@@ -78,6 +82,40 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
             }
             findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
         }
+
+        //handle add to cart Button
+        specialProductAdapter.inCLickedButton = {
+            if(it.color == null && it.sizes ==null){
+                viewModelProductDetails.addUpdateProductInCart(CartProduct(it,1,null,null))
+            } else {
+                val bundle = Bundle().apply {
+                    putParcelable(PRODUCT,it)
+                }
+                findNavController().navigate(R.id.action_homeShoppingFragment_to_productDetailsFragment,bundle)
+            }
+        }
+
+        //collect the value of addCart
+        lifecycleScope.launch {
+            viewModelProductDetails.addCart.collectLatest{
+                when(it){
+                    is Resource.Loading ->{
+                        specialProductAdapter.btnAnimation = 1
+                    }
+                    is Resource.Success ->{
+                        specialProductAdapter.btnAnimation = 2
+                        Toast.makeText(requireContext(),"product add to cart successfully",Toast.LENGTH_LONG).show()
+                    }
+                    is Resource.Error ->{
+                        specialProductAdapter.btnAnimation = 2
+                        Toast.makeText(requireContext(),it.message.toString(),Toast.LENGTH_LONG).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+
 
         //specialProducts Collecting data
         lifecycleScope.launch {
@@ -167,6 +205,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
         binding.rvSpecialProduct.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = specialProductAdapter
+            addItemDecoration(HorizontalItemDecoration())
             //paging on scrolling by RecyclerView
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
