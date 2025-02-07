@@ -88,6 +88,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
             if(it.color == null && it.sizes ==null){
                 viewModelProductDetails.addUpdateProductInCart(CartProduct(it,1,null,null))
             } else {
+                Toast.makeText(requireContext(),"Please Select Color and Size",Toast.LENGTH_LONG).show()
                 val bundle = Bundle().apply {
                     putParcelable(PRODUCT,it)
                 }

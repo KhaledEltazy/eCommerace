@@ -1,18 +1,17 @@
 package com.android.ecommerce.fragments.shopping_fragments
 
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.ecommerce.R
 import com.android.ecommerce.adapters.ColorAdapter
 import com.android.ecommerce.adapters.SizeAdapter
 import com.android.ecommerce.adapters.Viewpager2Adapter
@@ -22,6 +21,7 @@ import com.android.ecommerce.helper.getProductPrice
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.viewmodel.DetailsViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -55,6 +55,30 @@ class ProductDetailsFragment : Fragment() {
         setColorRecyclerView()
         setSizeRecyclerView()
 
+        //receive selected Product
+        val product = args.product
+
+        //check if the product have color or not and submit color list to adapter
+        if (product.color != null){
+            colorAdapter.differ.submitList(product.color)
+        } else {
+            binding.tvColorProductDetails.visibility = View.GONE
+            binding.rvColor.visibility = View.GONE
+        }
+
+        //check if the product have size or not and submit sizes list to adapter
+        if (product.sizes != null){
+            sizeAdapter.differ.submitList(product.sizes)
+        }else {
+            binding.tvSizesProductDetails.visibility = View.GONE
+            binding.rvSizes.visibility = View.GONE
+        }
+
+        //submit images list to viewpagerAdapter
+        viewpager2Adapter.differ.submitList(product.images)
+        //connect tabLayout to viewPager to show dots under photos
+        TabLayoutMediator(binding.tabLayoutDots,binding.viewpagerProductImages){_,_->}.attach()
+
         //determine the selectedSize
         sizeAdapter.onSizeSelected ={
             selectedSize = it
@@ -65,18 +89,26 @@ class ProductDetailsFragment : Fragment() {
             selectedColor = it
         }
 
-        val prodcut = args.product
+
         binding.apply {
 
             ivClose.setOnClickListener {
                 findNavController().navigateUp()
             }
 
-            tvProductNameProductDetails.text = prodcut.productName
-            tvPriceProductDetails.text = prodcut.offer.getProductPrice(prodcut.price).toString()
+            tvProductNameProductDetails.text = product.productName
+            if (product.offer == null) {
+                tvPriceProductDetails.text = "$ ${product.price}"
+                tvOfferProductDetails.visibility = View.INVISIBLE
+            } else {
+                tvPriceProductDetails.text = "$ ${product.price}"
+                tvPriceProductDetails.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                tvOfferProductDetails.text = "$ ${product.offer.getProductPrice(product.price)}"
 
-            if(prodcut.productDescription != null)
-                tvProductDescriptionProductDetails.text = prodcut.productDescription
+            }
+
+            if(product.productDescription != null)
+                tvProductDescriptionProductDetails.text = product.productDescription
             else {
                 tvProductDescriptionProductDetails.visibility = View.GONE
             }
@@ -85,23 +117,23 @@ class ProductDetailsFragment : Fragment() {
             //checking if product has color and sizes or not
             //checking if the user select color or sizes of founded
             btnAddToCart.setOnClickListener {
-                if(prodcut.sizes !=null && prodcut.color != null){
+                if(product.sizes !=null && product.color != null){
                     if(selectedSize != null && selectedColor != null){
-                        viewModel.addUpdateProductInCart(CartProduct(prodcut,1,selectedColor,selectedSize))
+                        viewModel.addUpdateProductInCart(CartProduct(product,1,selectedColor,selectedSize))
                     } else {
                         Toast.makeText(requireContext(),"Please Select Color and Size",Toast.LENGTH_LONG).show()
                     }
-                } else if (prodcut.sizes ==null && prodcut.color == null){
-                    viewModel.addUpdateProductInCart(CartProduct(prodcut,1))
-                } else if(prodcut.sizes != null){
+                } else if (product.sizes ==null && product.color == null){
+                    viewModel.addUpdateProductInCart(CartProduct(product,1))
+                } else if(product.sizes != null){
                     if(selectedSize !=null){
-                        viewModel.addUpdateProductInCart(CartProduct(prodcut,1,null,selectedSize))
+                        viewModel.addUpdateProductInCart(CartProduct(product,1,null,selectedSize))
                     } else {
                         Toast.makeText(requireContext(),"Please Select Size of the product",Toast.LENGTH_LONG).show()
                     }
                 } else {
                     if(selectedColor !=null){
-                        viewModel.addUpdateProductInCart(CartProduct(prodcut,1,selectedColor))
+                        viewModel.addUpdateProductInCart(CartProduct(product,1,selectedColor))
                     } else {
                         Toast.makeText(requireContext(),"Please Select color of the product",Toast.LENGTH_LONG).show()
                     }
@@ -109,21 +141,6 @@ class ProductDetailsFragment : Fragment() {
             }
         }
 
-        if (prodcut.color != null){
-            colorAdapter.differ.submitList(prodcut.color)
-        } else {
-            binding.tvColorProductDetails.visibility = View.GONE
-            binding.rvColor.visibility = View.GONE
-        }
-
-        if (prodcut.sizes != null){
-            sizeAdapter.differ.submitList(prodcut.sizes)
-        }else {
-            binding.tvSizesProductDetails.visibility = View.GONE
-            binding.rvSizes.visibility = View.GONE
-        }
-
-        viewpager2Adapter.differ.submitList(prodcut.images!!)
 
         //collect the value of addCart
         lifecycleScope.launch {
