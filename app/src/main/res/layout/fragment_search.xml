@@ -11,52 +11,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.shopping_fragments.SearchFragment">
 
-    <LinearLayout
-        android:id="@+id/homeHeaderSF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/searchBarSF"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/search_box_background">
-            <EditText
-                android:id="@+id/tvSearchSF"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/search_box_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_thin"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:singleLine="true"
-                android:hint="@string/search_now"
-                android:textSize="16sp"
-                android:textColor="@color/grey"
-                android:background="@android:color/transparent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_search"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:iconifiedByDefault="false"
+                android:queryHint="@string/search_now"
+                android:background="@drawable/search_box_background"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -65,7 +46,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeHeaderSF"
+        app:layout_constraintTop_toBottomOf="@id/searchBarSF"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
@@ -80,6 +61,54 @@
         app:layout_constraintStart_toStartOf="@id/searchRv"
         app:layout_constraintBottom_toBottomOf="@id/searchRv"
         android:visibility="gone"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_Search_empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/searchBarSF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/imageEmptyBoxTexture"
+            android:layout_width="200dp"
+            android:layout_height="250dp"
+            android:src="@drawable/ic_empty_box_texture"
+            app:layout_constraintBottom_toBottomOf="@id/imageEmptyBox"
+            app:layout_constraintTop_toTopOf="@id/imageEmptyBox"
+            app:layout_constraintStart_toStartOf="@id/imageEmptyBox"
+            app:layout_constraintEnd_toEndOf="@id/imageEmptyBox"/>
+
+        <ImageView
+            android:id="@+id/imageEmptyBox"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="130dp"
+            android:background="@drawable/empty_box_background"
+            android:src="@drawable/khaled_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/type_in_search_bar_to_get_your_product"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/imageEmptyBoxTexture"
+            app:layout_constraintStart_toStartOf="@id/imageEmptyBoxTexture"
+            app:layout_constraintEnd_toEndOf="@id/imageEmptyBoxTexture"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
