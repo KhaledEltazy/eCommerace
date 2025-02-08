@@ -1,10 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id ("kotlin-parcelize")
+    id("kotlin-parcelize")
     id("kotlin-kapt")
     id("org.jetbrains.kotlin.kapt")
-    id ("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
 }
@@ -74,7 +74,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -88,27 +87,19 @@ dependencies {
 
     // Firebase dependencies using BOM for compatibility
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-auth:22.1.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-firestore:25.1.1")
+    implementation("com.google.firebase:firebase-storage:21.0.1")
 
-    //Firebase FireSore
-    implementation ("com.google.firebase:firebase-firestore:25.1.1")
-
-    // Loading button
+    // UI Components
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
-
-    // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.15.0")
-
-    // Circular Image View
     implementation("de.hdodenhof:circleimageview:3.1.0")
-
-    // ViewPager2 indicator
     implementation("androidx.viewpager2:viewpager2:1.1.0")
-
-    // StepView
     implementation("com.github.shuhart:stepview:1.5.1")
 
-    // Android Navigation KTX
+    // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
 
@@ -117,26 +108,16 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-common-java8:2.6.1")
 
-    // Dagger-Hilt for Dependency Injection
+    // Dagger-Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
-    // Unit testing
+    // Testing
     testImplementation("junit:junit:4.13.2")
-
-    // Android testing
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-    // Navigation Component
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.2")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.2")
-
-    //Firebase CloudStorage
-    implementation ("com.google.firebase:firebase-storage:21.0.1")
-
 }
 
-    kapt {
-        correctErrorTypes = true
-    }
+kapt {
+    correctErrorTypes = true
+}

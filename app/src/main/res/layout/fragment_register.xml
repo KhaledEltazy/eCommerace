@@ -128,27 +128,16 @@
         app:spinning_bar_color="@color/g_white"/>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnFacebook"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/smallButtonHeight"
-        android:text="@string/facebook"
-        android:background="@drawable/facebook_login"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintEnd_toStartOf="@id/btnGoogle"
-        app:layout_constraintTop_toBottomOf="@id/btnRegister"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="8dp"
-        />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGoogle"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="@dimen/smallButtonHeight"
         android:text="@string/google"
         android:background="@drawable/google_login"
-        app:layout_constraintStart_toEndOf="@id/btnFacebook"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/btnRegister"
+        app:layout_constraintEnd_toEndOf="@id/btnRegister"
         app:layout_constraintTop_toBottomOf="@id/btnRegister"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"

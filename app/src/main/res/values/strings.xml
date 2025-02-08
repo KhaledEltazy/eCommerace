@@ -63,4 +63,7 @@
     <string name="logout">Logout</string>
     <string name="see_product">See product</string>
     <string name="add_to_cart">Add to cart</string>
+
+
+    <string name="default_web_client_id">719213248976-1ff23piiest8fvmccn3teh4ok9tt1ipr.apps.googleusercontent.com</string>
 </resources>

@@ -11,6 +11,7 @@ import com.android.ecommerce.util.validateEmail
 import com.android.ecommerce.util.validatePassword
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -56,6 +57,30 @@ class RegisterViewmodel @Inject constructor(
             viewModelScope.launch {
                 _validation.send(registerFieldsState)
             }
+        }
+    }
+
+    //registerByGoogle
+    fun registerByGoogleAccount(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        viewModelScope.launch {
+            _register.emit(Resource.Loading())
+            firebaseAuth.signInWithCredential(credential)
+                .addOnSuccessListener { authResult ->
+                    authResult.user?.let { firebaseUser ->
+                        val user = User(
+                            firstName = firebaseUser.displayName?.split(" ")?.getOrNull(0) ?: "",
+                            lastName = firebaseUser.displayName?.split(" ")?.getOrNull(1) ?: "",
+                            email = firebaseUser.email ?: "",
+                            imagePath = firebaseUser.photoUrl?.toString() ?: ""
+                        )
+                        saveUserInfo(firebaseUser.uid, user)
+                        _register.value = Resource.Success(user)
+                    }
+                }
+                .addOnFailureListener {
+                    _register.value = Resource.Error(it.message.toString())
+                }
         }
     }
 
