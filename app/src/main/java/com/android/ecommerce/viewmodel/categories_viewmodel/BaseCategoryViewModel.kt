@@ -1,4 +1,4 @@
-package com.android.ecommerce.viewmodel
+package com.android.ecommerce.viewmodel.categories_viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.android.ecommerce.data.Category

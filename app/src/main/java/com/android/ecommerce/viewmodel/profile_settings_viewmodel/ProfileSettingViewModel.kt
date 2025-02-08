@@ -1,4 +1,4 @@
-package com.android.ecommerce.viewmodel
+package com.android.ecommerce.viewmodel.profile_settings_viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

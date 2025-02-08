@@ -9,7 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.ecommerce.R
 import com.android.ecommerce.databinding.ActivityShoppingBinding
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.CartViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

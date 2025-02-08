@@ -1,8 +1,6 @@
 package com.android.ecommerce.fragments.shopping_fragments
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,8 +15,7 @@ import com.android.ecommerce.activities.LoggingRegisterActivity
 import com.android.ecommerce.databinding.FragmentProfileBinding
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.showingBottomNavView
-import com.android.ecommerce.viewmodel.ProfileSettingViewModel
-import com.bumptech.glide.Glide
+import com.android.ecommerce.viewmodel.profile_settings_viewmodel.ProfileSettingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

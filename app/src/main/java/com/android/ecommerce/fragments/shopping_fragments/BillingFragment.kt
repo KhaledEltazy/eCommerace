@@ -21,8 +21,8 @@ import com.android.ecommerce.data.order.Order
 import com.android.ecommerce.data.order.OrderStatus
 import com.android.ecommerce.databinding.FragmentBillingBinding
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.BillingViewModel
-import com.android.ecommerce.viewmodel.OrderViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.BillingViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.OrderViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

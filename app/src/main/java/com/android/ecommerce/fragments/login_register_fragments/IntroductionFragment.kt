@@ -14,7 +14,7 @@ import com.android.ecommerce.activities.ShoppingActivity
 import com.android.ecommerce.databinding.FragmentIntroductionBinding
 import com.android.ecommerce.util.Constants.ACCOUNT_OPTION_FRAGMENT
 import com.android.ecommerce.util.Constants.SHOPPING_ACTIVITY
-import com.android.ecommerce.viewmodel.IntroductionViewmodel
+import com.android.ecommerce.viewmodel.login_registration_viewmodels.IntroductionViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

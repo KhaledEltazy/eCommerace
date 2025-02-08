@@ -1,4 +1,4 @@
-package com.android.ecommerce.viewmodel
+package com.android.ecommerce.viewmodel.login_registration_viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,6 @@ import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.validateEmail
 import com.android.ecommerce.util.validatePassword
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel

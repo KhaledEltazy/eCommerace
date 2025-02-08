@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +18,7 @@ import com.android.ecommerce.firebase.FirebaseCommon
 import com.android.ecommerce.util.Constants.PRODUCT
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.VerticalItemDecoration
-import com.android.ecommerce.viewmodel.CartViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.CartViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

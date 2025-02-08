@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,7 +19,7 @@ import com.android.ecommerce.data.User
 import com.android.ecommerce.databinding.FragmentUserAccountBinding
 import com.android.ecommerce.dialog.setupBottomSheetDialog
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.UserAccountViewModel
+import com.android.ecommerce.viewmodel.profile_settings_viewmodel.UserAccountViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

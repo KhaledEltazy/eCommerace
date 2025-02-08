@@ -1,9 +1,8 @@
-package com.android.ecommerce.viewmodel
+package com.android.ecommerce.viewmodel.login_registration_viewmodels
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.ecommerce.R
 import com.android.ecommerce.util.Constants.ACCOUNT_OPTION_FRAGMENT
 import com.android.ecommerce.util.Constants.SHARED_PREF_CHECKING_FIRST_OPEN
 import com.android.ecommerce.util.Constants.SHOPPING_ACTIVITY

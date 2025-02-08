@@ -1,4 +1,4 @@
-package com.android.ecommerce.viewmodel
+package com.android.ecommerce.viewmodel.categories_viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(
+class ProductDetailsViewModel @Inject constructor(
     private val firestore: FirebaseFirestore,
     val auth : FirebaseAuth,
     private val firebaseCommon: FirebaseCommon

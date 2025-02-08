@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.ecommerce.R
-import com.android.ecommerce.activities.ShoppingActivity
 import com.android.ecommerce.adapters.BestDealsAdapter
 import com.android.ecommerce.adapters.BestProductsAdapter
 import com.android.ecommerce.adapters.SpecialProductAdapter
@@ -25,11 +24,9 @@ import com.android.ecommerce.util.Constants.PRODUCT
 import com.android.ecommerce.util.HorizontalItemDecoration
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.VerticalItemDecoration
-import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.util.showingBottomNavView
-import com.android.ecommerce.viewmodel.DetailsViewModel
-import com.android.ecommerce.viewmodel.MainCategoryViewmodel
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.android.ecommerce.viewmodel.categories_viewmodel.ProductDetailsViewModel
+import com.android.ecommerce.viewmodel.categories_viewmodel.MainCategoryViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -43,7 +40,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_category_main) {
     private lateinit var bestProductAdapter : BestProductsAdapter
     val TAG = "MainCategoryFragment"
     private val viewmodel by viewModels<MainCategoryViewmodel>()
-    private val viewModelProductDetails by viewModels<DetailsViewModel>()
+    private val viewModelProductDetails by viewModels<ProductDetailsViewModel>()
 
 
     override fun onCreateView(

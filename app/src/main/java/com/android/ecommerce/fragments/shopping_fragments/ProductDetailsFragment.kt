@@ -20,7 +20,7 @@ import com.android.ecommerce.databinding.FragmentProductDetailsBinding
 import com.android.ecommerce.helper.getProductPrice
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.hidingBottomNavView
-import com.android.ecommerce.viewmodel.DetailsViewModel
+import com.android.ecommerce.viewmodel.categories_viewmodel.ProductDetailsViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -35,7 +35,7 @@ class ProductDetailsFragment : Fragment() {
     private val args by  navArgs<ProductDetailsFragmentArgs>()
     private var selectedColor : Int? = null
     private var selectedSize : String? = null
-    private val viewModel by viewModels<DetailsViewModel>()
+    private val viewModel by viewModels<ProductDetailsViewModel>()
 
 
     override fun onCreateView(

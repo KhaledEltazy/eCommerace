@@ -1,9 +1,9 @@
-package com.android.ecommerce.viewmodel.factory
+package com.android.ecommerce.viewmodel.categories_viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.ecommerce.data.Category
-import com.android.ecommerce.viewmodel.BaseCategoryViewModel
+import com.android.ecommerce.viewmodel.categories_viewmodel.BaseCategoryViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class BaseCategoryViewModelFactory(

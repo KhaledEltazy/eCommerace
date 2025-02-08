@@ -15,7 +15,7 @@ import com.android.ecommerce.activities.ShoppingActivity
 import com.android.ecommerce.databinding.FragmentLogInBinding
 import com.android.ecommerce.dialog.setupBottomSheetDialog
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.LoginViewmodel
+import com.android.ecommerce.viewmodel.login_registration_viewmodels.LoginViewmodel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

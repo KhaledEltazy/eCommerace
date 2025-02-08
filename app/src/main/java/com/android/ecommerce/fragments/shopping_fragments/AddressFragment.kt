@@ -9,11 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.android.ecommerce.R
 import com.android.ecommerce.data.Address
 import com.android.ecommerce.databinding.FragmentAddressBinding
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.AddressViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.AddressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

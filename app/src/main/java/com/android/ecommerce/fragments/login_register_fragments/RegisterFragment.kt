@@ -19,7 +19,7 @@ import com.android.ecommerce.data.User
 import com.android.ecommerce.databinding.FragmentRegisterBinding
 import com.android.ecommerce.util.RegisterValidation
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.RegisterViewmodel
+import com.android.ecommerce.viewmodel.login_registration_viewmodels.RegisterViewmodel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

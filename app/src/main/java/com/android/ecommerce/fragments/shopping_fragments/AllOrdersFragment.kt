@@ -10,11 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.ecommerce.R
 import com.android.ecommerce.adapters.AllOrdersAdapter
 import com.android.ecommerce.databinding.FragmentOrdersBinding
 import com.android.ecommerce.util.Resource
-import com.android.ecommerce.viewmodel.AllOrdersViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.AllOrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
