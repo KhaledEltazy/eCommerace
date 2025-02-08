@@ -56,27 +56,6 @@
             android:layout_width="10dp"
             android:layout_height="match_parent"/>
 
-        <ImageView
-            android:id="@+id/tvScan"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_scan"
-            android:background="@drawable/icon_background"
-            android:backgroundTint="@color/g_search_and_icons"
-            android:padding="10dp"/>
-
-        <View
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-
-        <ImageView
-            android:id="@+id/tvMicrophone"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_microphone"
-            android:background="@drawable/icon_background"
-            android:backgroundTint="@color/g_search_and_icons"
-            android:padding="10dp"/>
 
     </LinearLayout>
 
@@ -100,6 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabLayout"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
