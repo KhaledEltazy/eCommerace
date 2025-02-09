@@ -63,8 +63,8 @@
     <string name="logout">Logout</string>
     <string name="see_product">See product</string>
     <string name="add_to_cart">Add to cart</string>
-
+    <string name="type_in_search_bar_to_get_your_product">type in search bar to get your product</string>
 
     <string name="default_web_client_id">Enter your ID</string>
-    <string name="type_in_search_bar_to_get_your_product">type in search bar to get your product</string>
+
 </resources>
