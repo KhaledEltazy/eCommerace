@@ -18,6 +18,7 @@ import com.android.ecommerce.firebase.FirebaseCommon
 import com.android.ecommerce.util.Constants.PRODUCT
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.VerticalItemDecoration
+import com.android.ecommerce.util.showingBottomNavView
 import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.CartViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
@@ -194,5 +195,11 @@ class CartFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
             addItemDecoration(VerticalItemDecoration())
         }
+    }
+
+    //return bottomNavView in navigateUP from another fragment
+    override fun onResume() {
+        super.onResume()
+        showingBottomNavView()
     }
 }

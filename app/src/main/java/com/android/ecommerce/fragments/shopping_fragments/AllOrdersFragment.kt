@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.ecommerce.adapters.AllOrdersAdapter
 import com.android.ecommerce.databinding.FragmentOrdersBinding
 import com.android.ecommerce.util.Resource
+import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.AllOrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -32,6 +33,7 @@ class AllOrdersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        hidingBottomNavView()
         binding = FragmentOrdersBinding.inflate(inflater)
         return binding.root
     }

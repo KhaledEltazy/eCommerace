@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.android.ecommerce.data.Address
 import com.android.ecommerce.databinding.FragmentAddressBinding
 import com.android.ecommerce.util.Resource
+import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.AddressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,6 +27,7 @@ class AddressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+            hidingBottomNavView()
             binding = FragmentAddressBinding.inflate(inflater)
             return binding.root
     }

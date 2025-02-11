@@ -88,9 +88,9 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    //return bottomNavView in navigateUP from another fragment
     override fun onResume() {
         super.onResume()
-
         showingBottomNavView()
     }
 }

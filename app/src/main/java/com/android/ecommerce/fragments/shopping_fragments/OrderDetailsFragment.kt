@@ -13,6 +13,7 @@ import com.android.ecommerce.data.CartProduct
 import com.android.ecommerce.data.order.OrderStatus
 import com.android.ecommerce.data.order.getOrderStatus
 import com.android.ecommerce.databinding.FragmentOrderDetailsBinding
+import com.android.ecommerce.util.hidingBottomNavView
 
 
 class OrderDetailsFragment : Fragment() {
@@ -28,6 +29,7 @@ class OrderDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        hidingBottomNavView()
         binding = FragmentOrderDetailsBinding.inflate(inflater)
         return binding.root
     }
