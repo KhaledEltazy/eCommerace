@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">eCommerce</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="the_right_address_for_shopping_anyday">The Right Address \n for Shopping \n Anyday</string>
     <string name="it_s_now_is_very_easy">it\'s now is very easy to reach the\nbest quality among all the\nproducts in the internt</string>

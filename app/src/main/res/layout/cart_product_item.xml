@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/productNameCartItemTv"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
@@ -42,6 +42,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/deleteCart"
             app:layout_constraintStart_toEndOf="@id/productImageCartItemIV"
             app:layout_constraintTop_toTopOf="@id/productImageCartItemIV"/>
 
@@ -96,34 +97,40 @@
             android:textAlignment="textStart"
             android:text="15 $"
             android:textColor="@color/g_black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/productImageCartItemIV"
             app:layout_constraintTop_toBottomOf="@id/productNameCartItemTv"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/colorIconCartItemIv"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginTop="4dp"
             android:src="@color/g_blue"
             app:layout_constraintStart_toStartOf="@id/productPriceCartItemTv"
-            app:layout_constraintTop_toBottomOf="@id/productPriceCartItemTv"/>
+            app:layout_constraintTop_toBottomOf="@id/productPriceCartItemTv"
+            app:layout_constraintBottom_toBottomOf="@id/line"
+            android:layout_marginBottom="2dp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/sizeIconCartItemIv"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginStart="4dp"
             android:src="@color/g_blue_gray200"
+            android:layout_marginTop="4dp"
             app:layout_constraintStart_toEndOf="@id/colorIconCartItemIv"
-            app:layout_constraintTop_toTopOf="@id/colorIconCartItemIv"/>
+            app:layout_constraintTop_toBottomOf="@id/productPriceCartItemTv"
+            app:layout_constraintBottom_toBottomOf="@id/line"
+            android:layout_marginBottom="2dp"/>
 
         <TextView
             android:id="@+id/productSizeCartItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="S"
+            android:textSize="10sp"
             app:layout_constraintTop_toTopOf="@id/sizeIconCartItemIv"
             app:layout_constraintStart_toStartOf="@id/sizeIconCartItemIv"
             app:layout_constraintEnd_toEndOf="@id/sizeIconCartItemIv"

@@ -21,11 +21,16 @@ class CartFragmentAdapter : RecyclerView.Adapter<CartFragmentAdapter.CartFragmen
             binding.apply {
                 productNameCartItemTv.text = cart.product.productName
                 quantityCartItemTv.text = cart.quantity.toString()
-                productPriceCartItemTv.text = cart.product.offer.getProductPrice(cart.product.price).toString()
                 Glide.with(itemView).load(cart.product.images[0]).into(productImageCartItemIV)
 
+                if(cart.product.offer == null){
+                    productPriceCartItemTv.text = cart.product.price.toString()
+                } else {
+                    productPriceCartItemTv.text = cart.product.offer.getProductPrice(cart.product.price).toString()
+                }
+
                 if (cart.selectedColor != null) {
-                    val imageDrawable = ColorDrawable(cart.selectedColor!!)
+                    val imageDrawable = ColorDrawable(cart.selectedColor)
                     colorIconCartItemIv.setImageDrawable(imageDrawable)
                 } else {
                     colorIconCartItemIv.visibility = View.GONE
