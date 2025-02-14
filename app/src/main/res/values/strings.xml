@@ -66,5 +66,7 @@
     <string name="type_in_search_bar_to_get_your_product">type in search bar to get your product</string>
 
     <string name="default_web_client_id">Enter your ID</string>
+    <string name="navigation">Navigation</string>
+    <string name="set_your_addresses">Set your Addresses</string>
 
 </resources>

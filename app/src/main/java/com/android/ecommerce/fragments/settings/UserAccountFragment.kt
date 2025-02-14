@@ -15,10 +15,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.android.ecommerce.R
 import com.android.ecommerce.data.User
 import com.android.ecommerce.databinding.FragmentUserAccountBinding
 import com.android.ecommerce.dialog.setupBottomSheetDialog
 import com.android.ecommerce.util.Resource
+import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.viewmodel.profile_settings_viewmodel.UserAccountViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +48,7 @@ class UserAccountFragment :Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        hidingBottomNavView()
         binding = FragmentUserAccountBinding.inflate(inflater)
         return binding.root
     }
@@ -67,6 +70,7 @@ class UserAccountFragment :Fragment() {
                         showUserInformation(it.data!!)
                     }
                     is Resource.Error->{
+                        hideUserLoading()
                         Toast.makeText(requireContext(),it.message, Toast.LENGTH_LONG).show()
                     }
                     else -> Unit
@@ -123,7 +127,8 @@ class UserAccountFragment :Fragment() {
             edFirstName.setText(user.firstName)
             edLastName.setText(user.lastName)
             edEmail.setText(user.email)
-            Glide.with(this@UserAccountFragment).load(user.imagePath).error(ColorDrawable(Color.BLACK)).into(imageUser)
+            Glide.with(this@UserAccountFragment).load(user.imagePath).error(resources.getDrawable(R.drawable.baseline_person_24))
+                .into(imageUser)
         }
     }
 

@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.navigateUp
 import com.android.ecommerce.data.Address
 import com.android.ecommerce.databinding.FragmentAddressBinding
 import com.android.ecommerce.util.Resource
@@ -61,6 +63,10 @@ class AddressFragment : Fragment() {
                 val address = Address(addressTitle,fullName,phone,street,state,city)
 
                 viewModel.addAddress(address)
+            }
+
+            binding.closeIconAddressFragment.setOnClickListener {
+                findNavController().navigateUp()
             }
         }
 

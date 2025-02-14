@@ -51,6 +51,7 @@ class BillingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        hidingBottomNavView()
         binding = FragmentBillingBinding.inflate(inflater)
         return binding.root
     }
@@ -102,6 +103,11 @@ class BillingFragment : Fragment() {
                 totalBoxContainer.visibility = View.INVISIBLE
                 middleLine.visibility = View.INVISIBLE
                 bottomLine.visibility = View.INVISIBLE
+            }
+
+            //handle close icon to navigateUp
+            binding.imageCloseBilling.setOnClickListener {
+                findNavController().navigateUp()
             }
         }
 

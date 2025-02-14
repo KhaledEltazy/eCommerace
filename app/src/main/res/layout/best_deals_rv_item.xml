@@ -63,19 +63,19 @@
         <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btn_see_product"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/blue_background"
             android:fontFamily="@font/poppins_light"
             android:text="@string/see_product"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/tvPriceBestDeals"
-            app:layout_constraintTop_toTopOf="@id/tvBDProductName"
-            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="20dp"
-            />
+            app:layout_constraintStart_toEndOf="@id/tvPriceBestDeals"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

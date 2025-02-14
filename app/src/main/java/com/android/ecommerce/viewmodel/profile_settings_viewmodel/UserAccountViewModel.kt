@@ -44,6 +44,7 @@ class UserAccountViewModel @Inject constructor(
     fun getUser(){
         viewModelScope.launch {
             _user.emit(Resource.Loading())
+        }
             firestore.collection("user").document(auth.uid!!).get()
                 .addOnSuccessListener {
                     val user = it.toObject(User::class.java)
@@ -57,7 +58,6 @@ class UserAccountViewModel @Inject constructor(
                         _user.emit(Resource.Error(it.message.toString()))
                     }
                 }
-        }
     }
 
     fun updateUser(user: User,imageUrl : Uri?){
