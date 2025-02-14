@@ -134,22 +134,39 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    fun deleteAllCartProduct(){
-        val userCartCollection = firestore
-            .collection("cart")
+
+    fun deleteAllCartProduct() {
+        val userCartCollection = firestore.collection("cart")
             .document(auth.uid!!)
             .collection("cart")
 
-        // Get all the documents inside the cart collection
-        userCartCollection.get().addOnSuccessListener { querySnapshot ->
-            for (document in querySnapshot.documents) {
-                // Delete each document
-                document.reference.delete()
-            }
-        }.addOnFailureListener { exception ->
-            // Handle failure (optional)
-            Log.e("DeleteCart", "Error deleting cart products: ", exception)
+        viewModelScope.launch {
+            _cartProducts.emit(Resource.Loading())  // Notify UI that deletion started
         }
 
+        userCartCollection.get()
+            .addOnSuccessListener { querySnapshot ->
+                val batch = firestore.batch()
+                for (document in querySnapshot.documents) {
+                    batch.delete(document.reference)
+                }
+
+                batch.commit()
+                    .addOnSuccessListener {
+                        viewModelScope.launch {
+                            _cartProducts.emit(Resource.Success(emptyList())) // Clear cart in UI
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        viewModelScope.launch {
+                            _cartProducts.emit(Resource.Error(exception.message.toString()))
+                        }
+                    }
+            }
+            .addOnFailureListener { exception ->
+                viewModelScope.launch {
+                    _cartProducts.emit(Resource.Error(exception.message.toString()))
+                }
+            }
     }
 }

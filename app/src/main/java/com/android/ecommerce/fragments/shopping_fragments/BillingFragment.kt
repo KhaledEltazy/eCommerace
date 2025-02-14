@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -23,6 +24,7 @@ import com.android.ecommerce.databinding.FragmentBillingBinding
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.hidingBottomNavView
 import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.BillingViewModel
+import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.CartViewModel
 import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.OrderViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +42,7 @@ class BillingFragment : Fragment() {
         BillingProductAdapter()
     }
     private val billingViewModel by viewModels<BillingViewModel>()
+    private val cartViewModel by activityViewModels<CartViewModel>()
     private val args by navArgs<BillingFragmentArgs>()
     private var products = emptyList<CartProduct>()
     private var totalPrice = 0f
@@ -95,6 +98,8 @@ class BillingFragment : Fragment() {
                 return@setOnClickListener
                 }
                 showOrderConfirmationDialog()
+                // clear cartFragment to make new Order not use old one
+                cartViewModel.deleteAllCartProduct()
             }
 
             //check if payment true or not
