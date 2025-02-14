@@ -59,8 +59,36 @@ class UserAccountFragment :Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //handle save button
+        binding.buttonSave.setOnClickListener {
+            binding.apply {
+                val firstName = edFirstName.text.trim().toString()
+                val lastName = edLastName.text.trim().toString()
+                val email = edEmail.text.trim().toString()
+                val user = User(firstName, lastName, email)
+                viewModel.updateUser(user, imageUri)
+            }
+        }
+
+        binding.imageEdit.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            imageActivityResultLauncher.launch(intent)
+        }
+
+        binding.tvUpdatePassword.setOnClickListener {
+            setupBottomSheetDialog {
+
+            }
+        }
+
+        //hande close icon
+        binding.imageCloseUserAccount.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         lifecycleScope.launch {
-            viewModel.user.collectLatest{
+            viewModel.user.collect{
                 when(it){
                     is Resource.Loading ->{
                         showUserLoading()
@@ -98,28 +126,7 @@ class UserAccountFragment :Fragment() {
             }
         }
 
-        //handle save button
-        binding.buttonSave.setOnClickListener {
-            binding.apply {
-               val firstName =  edFirstName.text.trim().toString()
-                val lastName = edLastName.text.trim().toString()
-                val email = edEmail.text.trim().toString()
-                val user = User(firstName,lastName,email)
-                viewModel.updateUser(user,imageUri)
-            }
-        }
 
-        binding.imageEdit.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            imageActivityResultLauncher.launch(intent)
-        }
-
-        binding.tvUpdatePassword.setOnClickListener {
-            setupBottomSheetDialog {
-
-            }
-        }
     }
 
     private fun showUserInformation(user: User) {
@@ -127,8 +134,8 @@ class UserAccountFragment :Fragment() {
             edFirstName.setText(user.firstName)
             edLastName.setText(user.lastName)
             edEmail.setText(user.email)
-            Glide.with(this@UserAccountFragment).load(user.imagePath).error(resources.getDrawable(R.drawable.baseline_person_24))
-                .into(imageUser)
+            //Glide.with(this@UserAccountFragment).load(user.imagePath).error(resources.getDrawable(R.drawable.baseline_person_24))
+            //    .into(imageUser)
         }
     }
 
@@ -147,7 +154,7 @@ class UserAccountFragment :Fragment() {
 
     private fun hideUserLoading() {
         binding.apply {
-            progressbarAccount.visibility = View.INVISIBLE
+            progressbarAccount.visibility = View.GONE
             imageUser.visibility = View.VISIBLE
             imageEdit.visibility = View.VISIBLE
             edFirstName.visibility = View.VISIBLE

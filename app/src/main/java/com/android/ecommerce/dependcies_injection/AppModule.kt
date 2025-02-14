@@ -6,7 +6,9 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.android.ecommerce.R
 import com.android.ecommerce.firebase.FirebaseCommon
+import com.android.ecommerce.util.CloudinaryApi
 import com.android.ecommerce.util.Constants.INTRODUCTION_SHARED
+import com.cloudinary.Cloudinary
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -48,9 +50,11 @@ object AppModule {
         firebaseAuth: FirebaseAuth
     ) = FirebaseCommon(firestore,firebaseAuth)
 
+    /*
     @Provides
     @Singleton
     fun provideStorage() = FirebaseStorage.getInstance().reference
+*/
 
     @Provides
     @Singleton
@@ -68,5 +72,12 @@ object AppModule {
         gso: GoogleSignInOptions
     ): GoogleSignInClient {
         return GoogleSignIn.getClient(context, gso)
+    }
+
+    // **Provide Cloudinary Instance**
+    @Provides
+    @Singleton
+    fun provideCloudinaryApi(): CloudinaryApi {
+        return CloudinaryApi()
     }
 }
