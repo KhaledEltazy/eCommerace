@@ -1,5 +1,7 @@
 package com.android.ecommerce.activities
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.android.ecommerce.R
 import com.android.ecommerce.databinding.ActivityShoppingBinding
+import com.android.ecommerce.util.NetworkReceiver
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.viewmodel.cart_biling_adress_all_orders_viewmodels.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +20,7 @@ import kotlinx.coroutines.launch
 class ShoppingActivity : AppCompatActivity() {
     private lateinit var binding : ActivityShoppingBinding
     lateinit var navHostFragment: NavHostFragment
+    private lateinit var networkReceiver: NetworkReceiver
 
     val viewModel by viewModels<CartViewModel>()
 
@@ -45,5 +49,17 @@ class ShoppingActivity : AppCompatActivity() {
             }
         }
 
+        networkReceiver = NetworkReceiver(this)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(networkReceiver)
     }
 }
