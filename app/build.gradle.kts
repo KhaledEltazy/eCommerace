@@ -91,7 +91,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.firebase:firebase-firestore:25.1.1")
     implementation("com.google.firebase:firebase-storage:21.0.1")
-
+    implementation ("com.google.firebase:firebase-messaging:24.1.0")
     // UI Components
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
     implementation("com.github.bumptech.glide:glide:4.15.0")

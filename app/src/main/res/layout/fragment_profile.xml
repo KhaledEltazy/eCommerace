@@ -153,44 +153,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/trackOrdersLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/leftGLProfileFragment"
-        app:layout_constraintEnd_toEndOf="@id/rightGLProfileFragment"
-        app:layout_constraintTop_toBottomOf="@id/allOrdersLayout"
-        android:orientation="horizontal"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/search_box_background"
-        android:padding="4dp">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/settings_items_background"
-            android:backgroundTint="@color/g_gray700"
-            android:src="@drawable/ic_search"
-            app:tint="@color/white"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/track_orders"
-            style="@style/MediumTextViewThin"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            />
-
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/ic_arrow"
-            android:layout_gravity="center_vertical"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/billingLayout"
@@ -198,7 +160,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/leftGLProfileFragment"
         app:layout_constraintEnd_toEndOf="@id/rightGLProfileFragment"
-        app:layout_constraintTop_toBottomOf="@id/trackOrdersLayout"
+        app:layout_constraintTop_toBottomOf="@id/allOrdersLayout"
         android:orientation="horizontal"
         android:background="@drawable/search_box_background"
         android:layout_marginTop="4dp"

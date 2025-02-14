@@ -1,9 +1,9 @@
 package com.android.ecommerce.fragments.shopping_fragments
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.android.ecommerce.R
 import com.android.ecommerce.activities.LoggingRegisterActivity
 import com.android.ecommerce.databinding.FragmentProfileBinding
+import com.android.ecommerce.util.Constants.REQUEST_NOTIFICATION_PERMISSION
 import com.android.ecommerce.util.Resource
 import com.android.ecommerce.util.showingBottomNavView
 import com.android.ecommerce.viewmodel.profile_settings_viewmodel.ProfileSettingViewModel
@@ -23,12 +24,15 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
     private lateinit var binding : FragmentProfileBinding
     private val viewModel by viewModels<ProfileSettingViewModel>()
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences // Inject SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +44,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        observeNotificationState()
 
         binding.apply {
 
@@ -73,6 +79,21 @@ class ProfileFragment : Fragment() {
             addressLayout.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_addressesListFragment)
             }
+
+            // Handle notification switch toggle
+            switchNotification.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    // Check if the notification permission is granted
+                    if (isNotificationPermissionGranted()) {
+                        viewModel.setNotificationPreference(true)
+                    } else {
+                        // Request permission if not granted
+                        requestNotificationPermission()
+                    }
+                } else {
+                    viewModel.setNotificationPreference(false)
+                }
+            }
         }
 
        lifecycleScope.launch {
@@ -97,9 +118,58 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun observeNotificationState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isNotificationsEnabled.collectLatest { isEnabled ->
+                binding.switchNotification.isChecked = isEnabled
+            }
+        }
+    }
+
+    private fun isNotificationPermissionGranted(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // On Android 13 and above, check notification permission
+            requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+        } else {
+            // For below Android 13, permissions are granted automatically
+            true
+        }
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(
+                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                REQUEST_NOTIFICATION_PERMISSION
+            )
+        }
+    }
+
+
+
     //return bottomNavView in navigateUP from another fragment
     override fun onResume() {
         super.onResume()
         showingBottomNavView()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_NOTIFICATION_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, enable notifications
+                    viewModel.setNotificationPreference(true)
+                } else {
+                    // Permission denied, show a toast or take appropriate action
+                    Toast.makeText(context, "Notification permission is required to enable notifications.", Toast.LENGTH_SHORT).show()
+                    binding.switchNotification.isChecked = false
+                }
+            }
+        }
     }
 }

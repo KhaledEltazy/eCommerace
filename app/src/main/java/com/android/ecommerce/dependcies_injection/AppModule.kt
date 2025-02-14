@@ -16,6 +16,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
@@ -38,11 +39,11 @@ object AppModule {
     @Singleton
     fun provideFirebaseFireStoreDatabase() = Firebase.firestore
 
-    @Provides
+    /*@Provides
     fun introductionFragmentSharedPref(
         application : Application
     ) = application.getSharedPreferences(INTRODUCTION_SHARED,MODE_PRIVATE)
-
+*/
     @Provides
     @Singleton
     fun provideFirebaseCommon(
@@ -80,4 +81,17 @@ object AppModule {
     fun provideCloudinaryApi(): CloudinaryApi {
         return CloudinaryApi()
     }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseMessaging() : FirebaseMessaging {
+        return FirebaseMessaging.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+    }
+
 }
