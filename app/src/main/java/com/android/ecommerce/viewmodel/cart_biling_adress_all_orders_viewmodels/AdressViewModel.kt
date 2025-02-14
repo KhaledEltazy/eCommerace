@@ -24,6 +24,9 @@ class AddressViewModel @Inject constructor(
     private val _addAddress = MutableStateFlow<Resource<Address>>(Resource.Unspecified())
     val addAddress = _addAddress.asStateFlow()
 
+    private val _deleteAddress = MutableStateFlow<Resource<Address>>(Resource.Unspecified())
+    val deleteAddress = _deleteAddress.asStateFlow()
+
     private val _error = MutableSharedFlow<String>()
     val error = _error.asSharedFlow()
 
@@ -57,6 +60,43 @@ class AddressViewModel @Inject constructor(
                 address.phone.trim().isNotEmpty() &&
                 address.city.trim().isNotEmpty() &&
                 address.state.trim().isNotEmpty()
+    }
 
+    fun deleteAddress(address: Address){
+        viewModelScope.launch {
+            _deleteAddress.emit(Resource.Loading())
+        }
+        firestore.collection("user").document(auth.uid!!).collection("address")
+            .whereEqualTo("addressTitle",address.addressTitle)
+            .whereEqualTo("fullName",address.fullName)
+            .whereEqualTo("city",address.city)
+            .whereEqualTo("street",address.street)
+            .whereEqualTo("phone",address.phone)
+            .whereEqualTo("state",address.state)
+            .get()
+            .addOnSuccessListener { querySnapShot ->
+                if(!querySnapShot.isEmpty){
+                    for (document in querySnapShot.documents){
+                        document.reference.delete()
+                            .addOnSuccessListener {
+                                viewModelScope.launch {
+                                    _deleteAddress.emit(Resource.Success(address))
+                                }
+                            }.addOnFailureListener {
+                                viewModelScope.launch {
+                                    _deleteAddress.emit(Resource.Error(it.message.toString()))
+                                }
+                            }
+                    }
+                } else {
+                    viewModelScope.launch {
+                        _error.emit("Address not found")
+                    }
+                }
+            } .addOnFailureListener {
+                viewModelScope.launch {
+                    _deleteAddress.emit(Resource.Error(it.message.toString()))
+                }
+            }
     }
 }

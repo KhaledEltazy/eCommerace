@@ -28,7 +28,7 @@ class AddressFragment : Fragment() {
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
             hidingBottomNavView()
             binding = FragmentAddressBinding.inflate(inflater)
             return binding.root
@@ -68,6 +68,10 @@ class AddressFragment : Fragment() {
             binding.closeIconAddressFragment.setOnClickListener {
                 findNavController().navigateUp()
             }
+
+            binding.deleteBtnAddressFragment.setOnClickListener {
+                viewModel.deleteAddress(address!!)
+            }
         }
 
         lifecycleScope.launch {
@@ -78,6 +82,28 @@ class AddressFragment : Fragment() {
                     }
                     is Resource.Success ->{
                         binding.saveBtnddressFragment.revertAnimation()
+                        Toast.makeText(requireContext(),"Address Added successfully",Toast.LENGTH_LONG).show()
+                        findNavController().navigateUp()
+                    }
+                    is Resource.Error ->{
+                        binding.saveBtnddressFragment.revertAnimation()
+                        Toast.makeText(requireContext(),it.message.toString(),Toast.LENGTH_LONG).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.deleteAddress.collect{
+                when(it){
+                    is Resource.Loading ->{
+                        binding.deleteBtnAddressFragment.startAnimation()
+                    }
+                    is Resource.Success ->{
+                        binding.deleteBtnAddressFragment.revertAnimation()
+                        Toast.makeText(requireContext(),"Address deleted successfully",Toast.LENGTH_LONG).show()
+                        findNavController().navigateUp()
                     }
                     is Resource.Error ->{
                         binding.saveBtnddressFragment.revertAnimation()
