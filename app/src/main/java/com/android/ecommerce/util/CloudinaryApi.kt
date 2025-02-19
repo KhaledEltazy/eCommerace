@@ -12,9 +12,9 @@ import javax.inject.Singleton
 class CloudinaryApi @Inject constructor() {
     private val cloudinary = Cloudinary(
         mapOf(
-            "cloud_name" to "your-cloud-name",
-            "api_key" to "your-api-key",
-            "api_secret" to "your-api-secret"
+            "cloud_name" to "",
+            "api_key" to "",
+            "api_secret" to ""
         )
     )
 

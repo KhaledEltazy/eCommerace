@@ -31,7 +31,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/black" />
+                    />
 
                 <TextView
                     android:id="@+id/tvOrderId"
@@ -40,7 +40,6 @@
                     android:layout_marginStart="25dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="#1234567"
-                    android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/imageCloseOrder"
@@ -67,32 +66,41 @@
                 app:sv_doneCircleRadius="14dp"
                 app:sv_doneStepLineColor="@color/g_orange_yellow"
                 app:sv_doneStepMarkColor="@color/g_blue_gray200"
-                app:sv_doneTextColor="@color/g_gray700"
-                app:sv_nextStepLineColor="@color/g_gray700"
-                app:sv_nextTextColor="@color/g_gray700"
+                app:sv_doneTextColor="@color/textColor2"
+                app:sv_nextStepLineColor="@color/textColor1"
+                app:sv_nextTextColor="@color/textColor2"
                 app:sv_selectedCircleColor="@color/g_orange_yellow"
                 app:sv_selectedCircleRadius="14dp"
-                app:sv_selectedStepNumberColor="@color/g_blue_gray200"
-                app:sv_selectedTextColor="@color/g_gray700"
+                app:sv_selectedStepNumberColor="@color/textColor1"
+                app:sv_selectedTextColor="@color/textColor2"
                 app:sv_stepLineWidth="3dp"
                 app:sv_stepNumberTextSize="12sp"
                 app:sv_stepPadding="4dp"
                 app:sv_stepViewStyle="@style/StepView" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/locationIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/linearStepView"
+           />
+
         <TextView
             android:id="@+id/tvShippingAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/poppins_thin"
+            style="@style/h3"
             android:text="@string/address"
-            android:textColor="@color/black"
             android:textSize="15sp"
-            app:drawableLeftCompat="@drawable/ic_location"
-            app:drawableTint="@color/black"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/linearStepView" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/locationIV"
+            app:layout_constraintTop_toBottomOf="@id/linearStepView"
+             />
 
         <LinearLayout
             android:id="@+id/linearAddress"
@@ -107,6 +115,7 @@
                 android:id="@+id/tvFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/h2"
                 android:text="@string/first_name"
                 android:textSize="13sp" />
 
@@ -114,6 +123,7 @@
                 android:id="@+id/tvAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/h2"
                 android:text="@string/address"
                 android:textSize="13sp" />
 
@@ -122,6 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone"
+                style="@style/h2"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -136,19 +147,27 @@
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/linearAddress" />
 
+        <ImageView
+            android:id="@+id/shoppingIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/baseline_shopping_cart_24"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/line1"
+            />
+
         <TextView
             android:id="@+id/tvProducts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:drawablePadding="5dp"
-            android:fontFamily="@font/poppins_thin"
+            style="@style/h3"
             android:text="@string/products"
-            android:textColor="@color/black"
             android:textSize="15sp"
-            app:drawableLeftCompat="@drawable/baseline_shopping_cart_24"
-            app:drawableTint="@color/black"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@id/shoppingIV"
             app:layout_constraintTop_toBottomOf="@id/line1" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -181,9 +200,8 @@
                 android:layout_marginTop="15sp"
                 android:layout_marginBottom="15sp"
                 android:layout_weight="1"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="Total"
-                android:textColor="@color/black"
+                style="@style/h3"
+                android:text="@string/total"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -197,9 +215,9 @@
                 android:layout_marginTop="16sp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textColor="@color/black"
+                style="@style/h3"
                 android:textSize="16sp"
+                android:text="1500$"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

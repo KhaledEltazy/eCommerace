@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.shopping_fragments.HomeShoppingFragment">
 
-    <Toolbar
+    <LinearLayout
         android:id="@+id/homeHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,17 +18,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/app_name"
-           android:textStyle="bold"
-           android:fontFamily="@font/mayonice"
-           android:textSize="45sp"
-           android:textColor="@color/g_blue"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:fontFamily="@font/mayonice"
+            android:textSize="45sp"
+            android:textColor="@color/appNameColor"
+            android:textDirection="ltr"
+            android:gravity="start"
+            android:layout_gravity="start"
+            />
 
 
-    </Toolbar>
+    </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

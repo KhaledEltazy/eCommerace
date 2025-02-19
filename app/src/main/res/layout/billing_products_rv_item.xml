@@ -3,11 +3,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="@color/g_white"
+    android:backgroundTint="@color/item_background"
+    android:layoutDirection="locale"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <View
@@ -23,12 +24,14 @@
         <ImageView
             android:id="@+id/imageCartProduct"
             android:layout_width="80dp"
-            android:layout_height="75dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="5dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/topLine"
             app:layout_constraintStart_toStartOf="parent"
             android:scaleType="centerCrop"
-            android:src="@color/g_blue"/>
+            android:src="@color/g_blue"
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/tvProductCartName"
@@ -36,13 +39,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_light"
-            android:text="Chair"
-            android:textColor="@color/black"
+            style="h2"
+            android:text="@string/product_name"
+            android:textAlignment="viewStart"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/imageCartProduct"
             app:layout_constraintTop_toTopOf="@id/imageCartProduct"
+            app:layout_constraintEnd_toEndOf="parent"
             android:lines="1" />
 
 
@@ -51,9 +55,8 @@
             android:id="@+id/tvProductCartPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
+            style="@style/h2"
             android:text="$50"
-            android:textColor="@color/black"
             android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/tvProductCartName"

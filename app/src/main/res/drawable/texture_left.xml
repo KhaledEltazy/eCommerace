@@ -2,7 +2,8 @@
     android:width="111.59dp"
     android:height="290.13dp"
     android:viewportWidth="111.59"
-    android:viewportHeight="290.13">
+    android:viewportHeight="290.13"
+    android:autoMirrored="true">
   <path
       android:pathData="M65.67,97.54A32.82,32.82 0,0 0,2.5 84.94,33 33,0 0,0 0,97.54L65.67,97.54Z"
       android:fillColor="#7ab0fe"/>

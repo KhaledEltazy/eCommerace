@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
     tools:context=".fragments.shopping_fragments.AddressFragment">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -105,9 +106,8 @@
         android:id="@+id/phoneETAddressFragment"
         android:layout_width="0dp"
         android:layout_height="45dp"
-        style="@style/editText"
+        style="@style/editTextPhone"
         android:textSize="16sp"
-        android:gravity="start|center_vertical"
         android:paddingStart="6dp"
         android:singleLine="true"
         android:layout_marginTop="12dp"

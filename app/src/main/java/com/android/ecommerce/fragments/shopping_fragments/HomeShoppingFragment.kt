@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.android.ecommerce.R
 import com.android.ecommerce.adapters.HomeViewPagerAdapter
 import com.android.ecommerce.databinding.FragmentHomeShoppingBinding
 import com.android.ecommerce.fragments.categories.AccessoryFragment
@@ -45,13 +46,13 @@ class HomeShoppingFragment : Fragment() {
         val viewPager2Adapter = HomeViewPagerAdapter(categoriesFragments,childFragmentManager,lifecycle)
         binding.viewPager.adapter = viewPager2Adapter
         TabLayoutMediator(binding.tabLayout,binding.viewPager){tab, position ->
-            when(position){
-                0 -> tab.text = "Home"
-                1 -> tab.text = "Chair"
-                2 -> tab.text = "Cupboard"
-                3 -> tab.text = "Table"
-                4 -> tab.text = "Accessory"
-                5 -> tab.text = "Furniture"
+            when (position) {
+                0 -> tab.text = context?.getString(R.string.tab_home)
+                1 -> tab.text = context?.getString(R.string.tab_chair)
+                2 -> tab.text = context?.getString(R.string.tab_cupboard)
+                3 -> tab.text = context?.getString(R.string.tab_table)
+                4 -> tab.text = context?.getString(R.string.tab_accessory)
+                5 -> tab.text = context?.getString(R.string.tab_furniture)
             }
 
         }.attach()

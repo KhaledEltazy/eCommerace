@@ -1,14 +1,11 @@
 package com.android.ecommerce.dependcies_injection
 
-import android.app.Application
+
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.android.ecommerce.R
 import com.android.ecommerce.firebase.FirebaseCommon
 import com.android.ecommerce.util.CloudinaryApi
-import com.android.ecommerce.util.Constants.INTRODUCTION_SHARED
-import com.cloudinary.Cloudinary
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -17,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

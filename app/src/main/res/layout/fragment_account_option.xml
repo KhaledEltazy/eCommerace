@@ -10,6 +10,10 @@
         android:layout_height="match_parent"
         android:src="@drawable/blury_background"
         android:scaleType="centerCrop"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -31,10 +35,9 @@
         android:id="@+id/tvShoppingAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/the_right_address_for_shopping_anyday"
+        android:text="@string/the_right_address"
         style="@style/h4"
-        android:textColor="@color/g_black"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/ivIcon"
@@ -83,8 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
+        app:layout_constraintGuide_percent="0.24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </FrameLayout>

@@ -28,7 +28,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/black"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:scaleType="centerInside"
@@ -41,10 +40,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Billing"
-                    android:textColor="@color/black"
+                    style="@style/h4"
+                    android:text="@string/billing_title"
                     android:textSize="20sp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -55,9 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_thin"
+            style="h3"
             android:text="@string/payment_methods"
-            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -68,9 +66,8 @@
             app:layout_constraintTop_toBottomOf="@id/tvPaymentMethods"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display"
+            style="@style/h3"
             android:text="@string/e_commerce_dose_not_support_virtual_payments_you_can_pay_when_you_receive_your_order"
-            android:textColor="@color/black"
             android:textSize="15sp" />
 
         <View
@@ -81,29 +78,35 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/edit_text_background"
             android:backgroundTint="@color/g_blue_gray200" />
+
+        <ImageView
+            android:id="@+id/locationIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/topLine"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/tvShoppingAddress"
-            app:drawableLeftCompat="@drawable/ic_location"
-            app:drawableTint="@color/black"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintStart_toEndOf="@id/locationIV"
             app:layout_constraintTop_toBottomOf="@id/topLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_thin"
+            style="@style/h2"
             android:text="@string/shipping_address"
-            android:textColor="@color/black"
             android:textSize="15sp" />
+
 
         <ImageView
             android:id="@+id/imageAddAddress"
             app:layout_constraintBottom_toBottomOf="@id/tvShoppingAddress"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="@id/tvShoppingAddress"
-            app:tint="@color/g_dark_blue"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:src="@drawable/ic_add" />
@@ -142,19 +145,19 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/edit_text_background"
             android:backgroundTint="@color/g_blue_gray200" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProducts"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/middleLine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layoutDirection="locale"
             android:orientation="horizontal"
             tools:listitem="@layout/billing_products_rv_item" />
 
@@ -166,7 +169,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/edit_text_background"
             android:backgroundTint="@color/g_blue_gray200" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -188,9 +191,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:fontFamily="@font/sf_pro_display"
+                style="@style/h3"
                 android:text="@string/total"
-                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -203,9 +205,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="15dp"
-                android:fontFamily="@font/sf_pro_display"
+                style="@style/h2"
                 android:text="$150"
-                android:textColor="@color/black"
                 android:textSize="16sp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

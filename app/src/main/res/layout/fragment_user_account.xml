@@ -34,16 +34,15 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/black" />
+                    />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="My account"
-                    android:textColor="@color/black"
+                    style="@style/h4"
+                    android:text="@string/my_account"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/imageCloseUserAccount"
                     app:layout_constraintStart_toStartOf="@id/imageCloseUserAccount"
@@ -68,7 +67,7 @@
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_marginTop="24dp"
-            android:src="@color/black"
+            android:src="@color/settingText"
             app:layout_constraintEnd_toEndOf="@id/rightGuideline"
             app:layout_constraintStart_toStartOf="@id/leftGuideline"
             app:layout_constraintTop_toBottomOf="@+id/toolbarUserAccount" />
@@ -90,7 +89,7 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/edit_text_background"
             android:fontFamily="@font/poppins_light"
             android:gravity="center"
             android:hint="@string/first_name"
@@ -105,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/edit_text_background"
             android:fontFamily="@font/poppins_light"
             android:gravity="center"
             android:hint="@string/last_name"
@@ -120,7 +119,7 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/edit_text_background"
             android:fontFamily="@font/poppins_light"
             android:gravity="center"
             android:hint="@string/email"

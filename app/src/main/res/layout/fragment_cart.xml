@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
         
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarCartFragment"
@@ -31,8 +32,7 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/black"/>
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
                 android:id="@+id/myCartTv"
@@ -40,9 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/my_cart"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/poppins_light"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                style="@style/h4"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/closeCartFragment"
                 app:layout_constraintTop_toTopOf="@id/closeCartFragment"
@@ -76,11 +74,13 @@
             android:id="@+id/rvCartFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/leftGl"
-            app:layout_constraintEnd_toStartOf="@id/rightGl"
-            app:layout_constraintTop_toBottomOf="@id/progressBarCart"
             app:layout_constraintBottom_toTopOf="@id/bottomGl"
-            tools:listitem="@layout/cart_product_item"/>
+            app:layout_constraintEnd_toStartOf="@id/rightGl"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/leftGl"
+            app:layout_constraintTop_toBottomOf="@id/progressBarCart"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/cart_product_item" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressBarCart"
@@ -91,6 +91,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbarCartFragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/deleteAllCV"
             android:layout_width="wrap_content"
@@ -101,10 +102,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvCartFragment"
             android:layout_marginTop="8dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="4dp">
 
         <ImageView
             android:layout_width="35dp"
@@ -114,6 +117,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/h3"
+            android:textSize="16sp"
             android:text="@string/delete_all_products"
             android:layout_gravity="center"
             />
@@ -136,27 +141,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total"
-                android:fontFamily="@font/poppins_light"
+                style="@style/h2"
                 android:textSize="20sp"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"/>
+                />
 
             <TextView
                 android:id="@+id/totalPriceCartFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$1600"
-                android:fontFamily="@font/poppins_light"
+                style="@style/h2"
                 android:textSize="20sp"
-                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="10dp"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
 
 
@@ -168,7 +173,7 @@
             android:id="@+id/btnCheckOut"
             android:layout_width="0dp"
             android:layout_height="@dimen/edittextHeight"
-            android:text="Check Out"
+            android:text="@string/check_out"
             style="@style/blueButtonStyle"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@id/leftGl"
@@ -208,10 +213,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
+                style="@style/h3"
                 android:gravity="center"
                 android:text="@string/your_shopping_cart_is_empty"
-                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintTop_toBottomOf="@id/imageEmptyBoxTexture"
                 app:layout_constraintStart_toStartOf="@id/imageEmptyBoxTexture"

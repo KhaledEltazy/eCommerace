@@ -1,8 +1,6 @@
 package com.android.ecommerce.fragments.settings
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -134,8 +132,8 @@ class UserAccountFragment :Fragment() {
             edFirstName.setText(user.firstName)
             edLastName.setText(user.lastName)
             edEmail.setText(user.email)
-            //Glide.with(this@UserAccountFragment).load(user.imagePath).error(resources.getDrawable(R.drawable.baseline_person_24))
-            //    .into(imageUser)
+            Glide.with(this@UserAccountFragment).load(user.imagePath).error(resources.getDrawable(R.drawable.baseline_person_24))
+                .into(imageUser)
         }
     }
 

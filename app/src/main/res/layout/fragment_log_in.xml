@@ -22,7 +22,7 @@
             android:layout_width="110dp"
             android:layout_height="60dp"
             android:src="@drawable/khaled_black"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="160dp"
             app:layout_constraintStart_toStartOf="@id/glStart"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:text="@string/register_text"
             style="@style/h2"
-            android:textColor="@color/g_dark_blue"
+            android:textColor="@color/appNameColor"
+            android:textStyle="bold"
             android:layout_marginTop="4dp"
             android:layout_marginStart="6dp"
             app:layout_constraintStart_toEndOf="@id/tvDontHaveAnAccount"
